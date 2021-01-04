@@ -74,8 +74,6 @@ Maven profiles are included for setting up the database.
 | Profile  | Database              |
 |----------|-----------------------|
 | h2       | H2 in-memory database |
-| mysql    | MySQL database        |
-| postgres | PostgreSQL database   |
 
 | Profile     | Server                   |
 |-------------|--------------------------|
