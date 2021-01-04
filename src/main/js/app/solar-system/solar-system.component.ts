@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as d3 from 'd3';
+import { PlanetsService } from '../planets.service';
 
 @Component({
   selector: 'app-solar-system',
@@ -9,69 +10,10 @@ import * as d3 from 'd3';
 })
 export class SolarSystemComponent implements OnInit {
 
-  solar = [
-    {
-      name: "Mercury", data: [
-        { id: 'tilt', value: 0.03, label: 'Tilt' },
-        { id: 'radius', value: 2439.7, label: 'Radius' },
-        { id: 'period', value: 58.65, label: 'Period' }
-      ]
-    },
-    {
-      name: "Venus", data: [
-        { id: 'tilt', value: 2.64, label: 'Tilt' },
-        { id: 'radius', value: 6051.8, label: 'Radius' },
-        { id: 'period', value: -243, label: 'Period' }
-      ]
-    },
-    {
-      name: "Earth", data: [
-        { id: 'tilt', value: 23.44, label: 'Tilt' },
-        { id: 'radius', value: 6371, label: 'Radius' },
-        { id: 'period', value: 1, label: 'Period' }
-      ]
-    },
-    {
-      name: "Mars", data: [
-        { id: 'tilt', value: 6.68, label: 'Tilt' },
-        { id: 'radius', value: 3389.5, label: 'Radius' },
-        { id: 'period', value: 1.03, label: 'Period' }
-      ]
-    },
-    {
-      name: "Jupiter", data: [
-        { id: 'tilt', value: 25.19, label: 'Tilt' },
-        { id: 'radius', value: 69911, label: 'Radius' },
-        { id: 'period', value: 0.41, label: 'Period' }
-      ]
-    },
-    {
-      name: "Saturn", data: [
-        { id: 'tilt', value: 26.73, label: 'Tilt' },
-        { id: 'radius', value: 58232, label: 'Radius' },
-        { id: 'period', value: 0.44, label: 'Period' }
-      ]
-    },
-    {
-      name: "Uranus", data: [
-        { id: 'tilt', value: 82.23, label: 'Tilt' },
-        { id: 'radius', value: 25362, label: 'Radius' },
-        { id: 'period', value: -0.72, label: 'Period' }
-      ]
-    },
-    {
-      name: "Neptune", data: [
-        { id: 'tilt', value: 28.32, label: 'Tilt' },
-        { id: 'radius', value: 24622, label: 'Radius' },
-        { id: 'period', value: 0.72, label: 'Period' }
-      ]
-    }
-  ];
-
   w = 960;
   h = 500;
 
-  constructor(private router: Router) { }
+  constructor(private planetsService: PlanetsService, private router: Router) { }
 
   ngOnInit(): void {
     var view = d3.select("figure#main_view").append("svg")
@@ -147,7 +89,7 @@ export class SolarSystemComponent implements OnInit {
 
   private displaySolarSystem(view) {
     this.displaySun(view, 0, 0, (this.w / 4), this.h);
-    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.solar);
+    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planetsService.planets());
   }
 
   /**
@@ -164,14 +106,6 @@ export class SolarSystemComponent implements OnInit {
     planet.append("circle")
       .attr("class", "planet")
       .attr("r", radius);
-  }
-  /**
-   * Cleans up the view.
-   */
-  private cleanView() {
-    d3.select("#sun").remove();
-    d3.select("#planets").remove();
-    d3.select("#planet_info").remove();
   }
 
 }
