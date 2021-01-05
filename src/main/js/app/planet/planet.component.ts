@@ -35,7 +35,7 @@ export class PlanetComponent implements OnInit {
   }
 
   /**
-   * Displays the received planet info.
+   * Displays the planet info.
    * 
    * @param {*} x x axis position
    * @param {*} y y axis position

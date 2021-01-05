@@ -25,12 +25,14 @@ export class SolarSystemComponent implements OnInit {
       .attr("height", this.h)
       .append("g");
 
-    this.displaySolarSystem(view);
+    this.displaySun(view, 0, 0, (this.w / 4), this.h);
+    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planetsService.planets());
   }
 
   /**
-   * Displays the received planets list.
+   * Draws the sun in the view.
    * 
+   * @param {*} view where the image will be drawn
    * @param {*} x x axis position
    * @param {*} y y axis position
    * @param {*} width view width
@@ -55,8 +57,9 @@ export class SolarSystemComponent implements OnInit {
   }
 
   /**
-   * Displays the received planets list.
+   * Draws the planets in the view.
    * 
+   * @param {*} view where the image will be drawn
    * @param {*} x x axis position
    * @param {*} y y axis position
    * @param {*} width view width
@@ -89,11 +92,6 @@ export class SolarSystemComponent implements OnInit {
       var x = d3.select(this);
       draw(x, planetViewWidth / 2, planetRadius);
     });
-  }
-
-  private displaySolarSystem(view) {
-    this.displaySun(view, 0, 0, (this.w / 4), this.h);
-    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planetsService.planets());
   }
 
   /**
