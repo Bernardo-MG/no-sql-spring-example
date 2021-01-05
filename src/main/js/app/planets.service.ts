@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Planet } from './planet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanetsService {
 
-  solar = [
+  solar: Array<Planet> = [
     {
       name: "Mercury", data: [
         { id: 'tilt', value: 0.03, label: 'Tilt' },
@@ -66,11 +67,11 @@ export class PlanetsService {
 
   constructor() { }
 
-  planets(): Array<Object> {
+  planets(): Array<Planet> {
     return this.solar;
   }
 
-  planet(id: string): Object {
+  planet(id: String): Planet {
     return this.solar.find(element => element.name === id);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Planet } from 'app/planet';
 import * as d3 from 'd3';
 import { PlanetsService } from '../planets.service';
 
@@ -13,7 +14,10 @@ export class SolarSystemComponent implements OnInit {
   w = 960;
   h = 500;
 
-  constructor(private planetsService: PlanetsService, private router: Router) { }
+  constructor(
+    private planetsService: PlanetsService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     var view = d3.select("figure#main_view").append("svg")
@@ -59,7 +63,7 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} height view height
    * @param {*} planets planets to display
    */
-  private displayPlanets(view, x, y, width, height, planets) {
+  private displayPlanets(view, x, y, width, height, planets: Array<Planet>) {
     var planetViewWidth = (width / planets.length);
     var planetViewHeight = height / 2;
     var planetRadius = planetViewWidth / 3;

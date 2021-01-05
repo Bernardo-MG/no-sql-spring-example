@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Planet } from 'app/planet';
 import * as d3 from 'd3';
 import { PlanetsService } from '../planets.service';
 
@@ -13,7 +14,7 @@ export class PlanetComponent implements OnInit {
   w = 960;
   h = 500;
 
-  @Input() planet: Object;
+  @Input() planet: Planet;
 
   constructor(
     private planetsService: PlanetsService,
@@ -42,7 +43,7 @@ export class PlanetComponent implements OnInit {
    * @param {*} height view height
    * @param {*} planet planet data
    */
-  private displayPlanetInfo(view, x, y, width, height, planet) {
+  private displayPlanetInfo(view, x, y, width, height, planet: Planet) {
     var planetViewWidth = (width / 3);
     var planetRadius = planetViewWidth / 3;
 
