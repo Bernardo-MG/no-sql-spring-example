@@ -51,13 +51,6 @@ export class PlanetComponent implements OnInit {
       .attr("id", "planet_info")
       .attr("transform", "translate(" + [x, y] + ")");
 
-    // Back button
-    boundingArea.append("text")
-      .text("Back")
-      .attr("class", "info")
-      .attr("class", "button");
-    // .on("click", () => { this.cleanView(); this.displaySolarSystem(view); });
-
     // Information label
     var info = boundingArea.append("g")
       .attr("transform", "translate(" + [planetViewWidth, (planetViewWidth / 2.5)] + ")")
