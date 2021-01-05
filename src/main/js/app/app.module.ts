@@ -13,11 +13,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SolarSystemComponent } from './solar-system/solar-system.component';
+import { PlanetComponent } from './planet/planet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SolarSystemComponent
+    SolarSystemComponent,
+    PlanetComponent
   ],
   imports: [
     AppRoutingModule,

@@ -36,6 +36,7 @@
       "@angular/platform-browser-dynamic": "~10.0.6",
       "@angular/router": "~10.0.6",
       "component": "^1.1.0",
+      "d3": "~6.3.1",
       "rxjs": "~6.6.0",
       "tslib": "^2.0.0",
       "zone.js": "~0.10.3"
@@ -44,6 +45,7 @@
       "@angular-devkit/build-angular": "~0.1000.4",
       "@angular/cli": "~10.0.4",
       "@angular/compiler-cli": "~10.0.6",
+      "@types/d3": "~6.2.0",
       "@types/node": "^12.11.1",
       "@types/jasmine": "~3.5.0",
       "@types/jasminewd2": "~2.0.3",

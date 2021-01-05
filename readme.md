@@ -12,9 +12,6 @@ Before beginning with the new project there are a few things which should be edi
 
 Note that the Maven site is using the [Docs Maven Skin](https://github.com/Bernardo-MG/docs-maven-skin), which will have a few configuration requirements of its own.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.example/solar-system-d3-spring-example.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/maven/solar-system-d3-spring-example/images/download.svg)][bintray-repo]
-
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
 
@@ -74,8 +71,6 @@ Maven profiles are included for setting up the database.
 | Profile  | Database              |
 |----------|-----------------------|
 | h2       | H2 in-memory database |
-| mysql    | MySQL database        |
-| postgres | PostgreSQL database   |
 
 | Profile     | Server                   |
 |-------------|--------------------------|
@@ -135,8 +130,6 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[bintray-repo]: https://bintray.com/bernardo-mg/maven/solar-system-d3-spring-example/view
-[maven-repo]: https://mvnrepository.com/artifact/com.bernardomg.example/solar-system-d3-spring-example
 [issues]: https://github.com/bernardo-mg/solar-system-d3-spring-example/issues
 [javadoc-develop]: https://docs.bernardomg.com/development/maven/solar-system-d3-spring-example/solar-system-d3-spring-example/apidocs
 [javadoc-release]: https://docs.bernardomg.com/maven/solar-system-d3-spring-example/solar-system-d3-spring-example/apidocs
