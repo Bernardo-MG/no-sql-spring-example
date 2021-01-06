@@ -57,7 +57,7 @@ export class PlanetComponent implements OnInit {
       .attr("class", "info");
 
     // Planet info
-    planet?.data.forEach(function (d, i) {
+    planet?.info.forEach(function (d, i) {
       info.append("text")
         .attr("y", i * 24)
         .text(d.label + ": " + d.value);

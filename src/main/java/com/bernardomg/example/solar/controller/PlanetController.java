@@ -22,26 +22,21 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.solar.controller.entity;
+package com.bernardomg.example.solar.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.example.solar.model.EntityForm;
-import com.bernardomg.example.solar.model.ExampleEntity;
+import com.bernardomg.example.solar.model.Planet;
 import com.bernardomg.example.solar.response.DefaultResponse;
 import com.bernardomg.example.solar.response.Response;
-import com.bernardomg.example.solar.service.ExampleEntityService;
+import com.bernardomg.example.solar.service.PlanetService;
 
 /**
  * Rest controller for the example entities.
@@ -50,56 +45,25 @@ import com.bernardomg.example.solar.service.ExampleEntityService;
  */
 @RestController
 @RequestMapping("/rest/entity")
-public class ExampleEntityController {
+public class PlanetController {
 
     /**
-     * Example entity service.
+     * Planet service.
      */
-    private final ExampleEntityService exampleEntityService;
+    private final PlanetService planetService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
      * @param service
-     *            example entity service
+     *            planet service
      */
     @Autowired
-    public ExampleEntityController(final ExampleEntityService service) {
+    public PlanetController(final PlanetService service) {
         super();
 
-        exampleEntityService = checkNotNull(service,
+        planetService = checkNotNull(service,
                 "Received a null pointer as service");
-    }
-
-    /**
-     * Creates an entity.
-     * 
-     * @param entity
-     *            entity to create
-     * @return the created entity
-     */
-    @PostMapping
-    public Response<ExampleEntity>
-            createEntity(@RequestBody final EntityForm entity) {
-        final ExampleEntity result;
-
-        result = exampleEntityService.add(entity.getName());
-
-        return new DefaultResponse<>(result);
-    }
-
-    /**
-     * Deletes an entity.
-     * 
-     * @param entity
-     *            entity to delete
-     * @return the deleted entity
-     */
-    @DeleteMapping
-    public Response<EntityForm> deleteEntity(final EntityForm entity) {
-        exampleEntityService.remove(entity.getId());
-
-        return new DefaultResponse<>(entity);
     }
 
     /**
@@ -112,30 +76,13 @@ public class ExampleEntityController {
      * @return a paginated collection of entities
      */
     @GetMapping
-    public Response<Iterable<? extends ExampleEntity>> readEntities(
+    public Response<Iterable<? extends Planet>> readEntities(
             @RequestParam(value = "query", required = false,
                     defaultValue = "") final String query,
             final Pageable page) {
-        final Iterable<? extends ExampleEntity> result;
+        final Iterable<? extends Planet> result;
 
-        result = exampleEntityService.findByNameQuery(query, page);
-
-        return new DefaultResponse<>(result);
-    }
-
-    /**
-     * Updates an entity.
-     * 
-     * @param entity
-     *            entity to update
-     * @return the updated entity
-     */
-    @PutMapping
-    public Response<ExampleEntity>
-            updateEntity(@RequestBody final EntityForm entity) {
-        final ExampleEntity result;
-
-        result = exampleEntityService.update(entity);
+        result = planetService.getPlanets();
 
         return new DefaultResponse<>(result);
     }
