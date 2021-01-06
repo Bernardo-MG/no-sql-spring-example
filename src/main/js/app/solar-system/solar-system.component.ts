@@ -25,8 +25,12 @@ export class SolarSystemComponent implements OnInit {
       .attr("height", this.h)
       .append("g");
 
+    this.planetsService.getPlanets().subscribe(planets => this.display(view, planets));
+  }
+
+  display(view, planets: Planet[]) {
     this.displaySun(view, 0, 0, (this.w / 4), this.h);
-    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planetsService.planets());
+    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, planets);
   }
 
   /**
