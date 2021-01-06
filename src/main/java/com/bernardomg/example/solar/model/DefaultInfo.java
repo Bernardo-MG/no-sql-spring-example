@@ -1,16 +1,22 @@
 
 package com.bernardomg.example.solar.model;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public final class DefaultInfo implements Info {
 
-    private String id;
+    private final String id;
 
-    private String label;
+    private final String label;
 
-    private Object value;
+    private final Object value;
 
-    public DefaultInfo() {
+    public DefaultInfo(final String ident, final String lb, final Object val) {
         super();
+
+        id = checkNotNull(ident);
+        label = checkNotNull(lb);
+        value = checkNotNull(val);
     }
 
     @Override
@@ -26,18 +32,6 @@ public final class DefaultInfo implements Info {
     @Override
     public Object getValue() {
         return value;
-    }
-
-    public void setId(final String id) {
-        this.id = id;
-    }
-
-    public void setLabel(final String label) {
-        this.label = label;
-    }
-
-    public void setValue(final Object value) {
-        this.value = value;
     }
 
 }
