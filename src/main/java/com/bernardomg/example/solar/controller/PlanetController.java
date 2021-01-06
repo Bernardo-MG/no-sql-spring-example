@@ -44,7 +44,7 @@ import com.bernardomg.example.solar.service.PlanetService;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/entity")
+@RequestMapping("/rest/planet")
 public class PlanetController {
 
     /**
