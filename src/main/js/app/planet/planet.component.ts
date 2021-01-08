@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Planet } from 'app/planet';
 import * as d3 from 'd3';
@@ -9,7 +9,7 @@ import { PlanetsService } from '../planets.service';
   templateUrl: './planet.component.html',
   styleUrls: ['./planet.component.sass']
 })
-export class PlanetComponent implements OnInit {
+export class PlanetComponent implements OnInit, OnChanges {
 
   w = 960;
   h = 500;
@@ -22,16 +22,20 @@ export class PlanetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    var view = d3.select("figure#planet_view").append("svg")
-      .attr("width", this.w)
-      .attr("height", this.h)
-      .append("g");
-
     this.route.params.subscribe(params => {
-      this.planet = this.planetsService.planet(params['id']);
+      this.planetsService.getPlanet(params['id']).subscribe(p => this.planet = p);
     });
+  }
 
-    this.displayPlanetInfo(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planet);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.planet) {
+      var view = d3.select("figure#planet_view").append("svg")
+        .attr("width", this.w)
+        .attr("height", this.h)
+        .append("g");
+
+      this.displayPlanetInfo(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planet);
+    }
   }
 
   /**

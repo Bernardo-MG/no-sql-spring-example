@@ -3,6 +3,7 @@ package com.bernardomg.example.solar.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,13 @@ public final class DefaultPlanetService implements PlanetService {
 
     public DefaultPlanetService() {
         super();
+    }
+
+    @Override
+    public Planet getPlanet(final String planet) {
+        return StreamSupport.stream(getPlanets().spliterator(), false)
+                .filter((p) -> planet.equalsIgnoreCase(p.getName())).findFirst()
+                .get();
     }
 
     @Override

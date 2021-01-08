@@ -7,4 +7,6 @@ public interface PlanetService {
 
     public Iterable<? extends Planet> getPlanets();
 
+    public Planet getPlanet(final String planet);
+
 }

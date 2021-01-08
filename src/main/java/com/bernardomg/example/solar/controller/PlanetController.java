@@ -27,10 +27,9 @@ package com.bernardomg.example.solar.controller;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.example.solar.model.Planet;
@@ -67,22 +66,32 @@ public class PlanetController {
     }
 
     /**
-     * Returns a paginated collection of entities.
+     * Returns all the planets.
      * 
-     * @param query
-     *            optional query argument
-     * @param page
-     *            pagination data
-     * @return a paginated collection of entities
+     * @return all the planets
      */
     @GetMapping
-    public Response<Iterable<? extends Planet>> readEntities(
-            @RequestParam(value = "query", required = false,
-                    defaultValue = "") final String query,
-            final Pageable page) {
+    public Response<Iterable<? extends Planet>> readPlanets() {
         final Iterable<? extends Planet> result;
 
         result = planetService.getPlanets();
+
+        return new DefaultResponse<>(result);
+    }
+
+    /**
+     * Returns a single planet.
+     * 
+     * @param planet
+     *            planet to search for
+     * @return the planet searched for
+     */
+    @GetMapping("/{planet}")
+    public Response<Planet>
+            readPlanet(@PathVariable("planet") final String planet) {
+        final Planet result;
+
+        result = planetService.getPlanet(planet);
 
         return new DefaultResponse<>(result);
     }
