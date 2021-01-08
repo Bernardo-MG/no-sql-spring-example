@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
 
 import { SolarSystemComponent } from './solar-system.component';
 import { Planet } from 'app/planet';
+import { PlanetsService } from '../planets.service';
 
-class MockedPlanetService {
+class MockedPlanetsService {
 
   getPlanets(): Observable<Planet[]> {
     return of([]);
@@ -21,13 +22,14 @@ class MockedPlanetService {
 describe('SolarSystemComponent', () => {
   let component: SolarSystemComponent;
   let fixture: ComponentFixture<SolarSystemComponent>;
-  let service: MockedPlanetService;
 
   beforeEach(async(() => {
-    service = new MockedPlanetService();
     TestBed.configureTestingModule({
       declarations: [SolarSystemComponent],
-      imports: [HttpClientModule, RouterTestingModule]
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [
+        { provides: PlanetsService, useClass: MockedPlanetsService }
+      ]
     })
       .compileComponents();
   }));
