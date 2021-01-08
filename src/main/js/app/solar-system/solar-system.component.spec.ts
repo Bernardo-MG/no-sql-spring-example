@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SolarSystemComponent } from './solar-system.component';
 
@@ -11,7 +10,7 @@ describe('SolarSystemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SolarSystemComponent ],
-      imports: [HttpClientTestingModule, RouterTestingModule]
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   }));
