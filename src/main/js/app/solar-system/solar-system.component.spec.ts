@@ -5,15 +5,12 @@ import { Observable, of } from 'rxjs';
 
 import { SolarSystemComponent } from './solar-system.component';
 import { Planet } from 'app/planet';
+import { PlanetsService } from 'app/planets.service';
 
-class MockedPlanetService {
+class MockedPlanetService extends PlanetsService {
 
   getPlanets(): Observable<Planet[]> {
     return of([]);
-  }
-
-  getPlanet(id: String): Observable<Planet> {
-    return of(undefined);
   }
 
 }
@@ -21,8 +18,10 @@ class MockedPlanetService {
 describe('SolarSystemComponent', () => {
   let component: SolarSystemComponent;
   let fixture: ComponentFixture<SolarSystemComponent>;
+  let service: MockedPlanetService;
 
   beforeEach(async(() => {
+    service = new MockedPlanetService();
     TestBed.configureTestingModule({
       declarations: [SolarSystemComponent],
       imports: [HttpClientModule, RouterTestingModule]

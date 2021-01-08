@@ -5,12 +5,9 @@ import { Observable, of } from 'rxjs';
 
 import { PlanetComponent } from './planet.component';
 import { Planet } from 'app/planet';
+import { PlanetsService } from 'app/planets.service';
 
-class MockedPlanetService {
-
-  getPlanets(): Observable<Planet[]> {
-    return of([]);
-  }
+class MockedPlanetService extends PlanetsService {
 
   getPlanet(id: String): Observable<Planet> {
     return of(undefined);
