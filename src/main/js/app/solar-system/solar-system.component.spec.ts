@@ -21,10 +21,8 @@ class MockedPlanetService {
 describe('SolarSystemComponent', () => {
   let component: SolarSystemComponent;
   let fixture: ComponentFixture<SolarSystemComponent>;
-  let service: MockedPlanetService;
 
   beforeEach(async(() => {
-    service = new MockedPlanetService();
     TestBed.configureTestingModule({
       declarations: [SolarSystemComponent],
       imports: [HttpClientModule, RouterTestingModule]
