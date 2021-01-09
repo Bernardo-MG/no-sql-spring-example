@@ -48,7 +48,7 @@ export class SolarSystemComponent implements OnInit {
    */
   private displaySun(view, width, height) {
     var radius = width * 5;
-    var xpos = 0 - (width * 4);
+    var xpos = 0 - radius+ 412;
     var ypos = height / 2;
 
     var sun = view.append("g")
@@ -72,8 +72,9 @@ export class SolarSystemComponent implements OnInit {
    */
   private displayPlanets(view, x, y, width, height, planets: Array<Planet>) {
     var planetViewWidth = (width / planets.length);
-    var planetViewHeight = height / 2;
     var planetRadius = planetViewWidth / 3;
+    var planetViewHeight = height / 2;
+    var planetViewSide = planetRadius * 2;
 
     var planetsView = view.append("g")
       .attr("id", "planets")
@@ -81,20 +82,20 @@ export class SolarSystemComponent implements OnInit {
       .selectAll("g")
       .data(planets)
       .enter().append("g")
-      .attr("transform", (d, i) => "translate(" + [i * (planetViewWidth), planetViewHeight] + ")")
+      .attr("transform", (d, i) => "translate(" + [i * (planetViewSide) + planetRadius, planetViewHeight] + ")")
       .on("click", (event, data) => this.router.navigate(['planet', data.name]));
 
     // Planet name
     planetsView.append("text")
       .attr("class", "label")
-      .attr("transform", "translate(" + [planetViewWidth / 3, -planetViewWidth / 2] + ")")
+      .attr("transform", "translate(" + [-planetRadius, -(planetRadius + 10)] + ")")
       .text(d => d.name);
 
     // Planets are drawn
     const draw = this.drawPlanet;
     planetsView.each(function (d) {
       var x = d3.select(this);
-      draw(x, planetViewWidth / 2, planetRadius);
+      draw(x, planetRadius, planetRadius);
     });
   }
 
@@ -106,8 +107,7 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} radius planet radius
    */
   private drawPlanet(element, xpos, radius) {
-    var planet = element.append("g")
-      .attr("transform", "translate(" + [xpos, 0] + ")");
+    var planet = element.append("g");
 
     planet.append("circle")
       .attr("class", "planet")
