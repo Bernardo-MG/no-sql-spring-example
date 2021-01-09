@@ -11,9 +11,6 @@ import { PlanetsService } from '../planets.service';
 })
 export class SolarSystemComponent implements OnInit {
 
-  w = 960;
-  h = 500;
-
   constructor(
     private planetsService: PlanetsService,
     private router: Router
@@ -21,12 +18,8 @@ export class SolarSystemComponent implements OnInit {
 
   ngOnInit(): void {
     var view = d3.select("figure#main_view")
-      .attr("width", "100%")
-      .attr("height", "100%")
       .append("svg")
       .attr("id", "mainGraphic")
-      .attr("width", this.w)
-      .attr("height", this.h)
       .append("g");
 
     this.planetsService.getPlanets().subscribe(planets => this.display(view, planets));
@@ -37,9 +30,10 @@ export class SolarSystemComponent implements OnInit {
     var node = mainView.node();
     var width = (node as HTMLElement).clientWidth;
     var height = (node as HTMLElement).clientHeight;
+    var sunWidth = (width / 4);
 
-    this.displaySun(view, (width / 4), height);
-    this.displayPlanets(view, (width / 4), 0, width - (width / 4), height, planets);
+    this.displaySun(view, sunWidth, height);
+    this.displayPlanets(view, sunWidth, 0, width - sunWidth, height, planets);
   }
 
   /**
