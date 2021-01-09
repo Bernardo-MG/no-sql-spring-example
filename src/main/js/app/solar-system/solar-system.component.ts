@@ -20,7 +20,11 @@ export class SolarSystemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    var view = d3.select("figure#main_view").append("svg")
+    var view = d3.select("figure#main_view")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .append("svg")
+      .attr("id", "mainGraphic")
       .attr("width", this.w)
       .attr("height", this.h)
       .append("g");
@@ -29,8 +33,13 @@ export class SolarSystemComponent implements OnInit {
   }
 
   display(view, planets: Planet[]) {
-    this.displaySun(view, 0, 0, (this.w / 4), this.h);
-    this.displayPlanets(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, planets);
+    var mainView = d3.select("svg#mainGraphic");
+    var node = mainView.node();
+    var width = (node as HTMLElement).clientWidth;
+    var height = (node as HTMLElement).clientHeight;
+
+    this.displaySun(view, (width / 4), height);
+    this.displayPlanets(view, (width / 4), 0, width - (width / 4), height, planets);
   }
 
   /**
@@ -43,16 +52,13 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} height view height
    * @param {*} planets planets to display
    */
-  private displaySun(view, x, y, width, height) {
+  private displaySun(view, width, height) {
     var radius = width * 5;
-    var xpos = x - (width * 4);
+    var xpos = 0 - (width * 4);
     var ypos = height / 2;
 
-    var boundingArea = view.append("g")
+    var sun = view.append("g")
       .attr("id", "sun")
-      .attr("transform", "translate(" + [x, y] + ")");
-
-    var sun = boundingArea.append("g")
       .attr("transform", "translate(" + [xpos, ypos] + ")");
 
     sun.append("circle")
