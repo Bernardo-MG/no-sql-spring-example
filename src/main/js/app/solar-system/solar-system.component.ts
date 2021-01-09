@@ -48,7 +48,7 @@ export class SolarSystemComponent implements OnInit {
    */
   private displaySun(view, width, height) {
     var radius = width * 5;
-    var xpos = 0 - radius+ 412;
+    var xpos = 0 - radius + 412;
     var ypos = height / 2;
 
     var sun = view.append("g")
@@ -92,26 +92,12 @@ export class SolarSystemComponent implements OnInit {
       .text(d => d.name);
 
     // Planets are drawn
-    const draw = this.drawPlanet;
     planetsView.each(function (d) {
       var x = d3.select(this);
-      draw(x, planetRadius, planetRadius);
+      var planet = x.append("g").append("circle")
+        .attr("class", "planet")
+        .attr("r", planetRadius);
     });
-  }
-
-  /**
-   * Draws a planet circle.
-   * 
-   * @param {*} element elemento where to draw the circle
-   * @param {*} xpos x axis position
-   * @param {*} radius planet radius
-   */
-  private drawPlanet(element, xpos, radius) {
-    var planet = element.append("g");
-
-    planet.append("circle")
-      .attr("class", "planet")
-      .attr("r", radius);
   }
 
 }
