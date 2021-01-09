@@ -9,12 +9,10 @@ import { PlanetsService } from '../planets.service';
   templateUrl: './planet.component.html',
   styleUrls: ['./planet.component.sass']
 })
-export class PlanetComponent implements OnInit, OnChanges {
+export class PlanetComponent implements OnInit {
 
   w = 960;
   h = 500;
-
-  @Input() planet: Planet;
 
   constructor(
     private planetsService: PlanetsService,
@@ -23,19 +21,17 @@ export class PlanetComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.planetsService.getPlanet(params['id']).subscribe(p => this.planet = p);
+      this.planetsService.getPlanet(params['id']).subscribe(d => this.display(d));
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.planet) {
-      var view = d3.select("figure#planet_view").append("svg")
-        .attr("width", this.w)
-        .attr("height", this.h)
-        .append("g");
+  display(planet: Planet) {
+    var view = d3.select("figure#planet_view").append("svg")
+      .attr("width", this.w)
+      .attr("height", this.h)
+      .append("g");
 
-      this.displayPlanetInfo(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, this.planet);
-    }
+    this.displayPlanetInfo(view, (this.w / 4), 0, this.w - (this.w / 4), this.h, planet);
   }
 
   /**
