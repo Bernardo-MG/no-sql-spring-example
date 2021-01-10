@@ -7,6 +7,6 @@ public interface Info {
 
     public String getLabel();
 
-    public Object getValue();
+    public Double getValue();
 
 }

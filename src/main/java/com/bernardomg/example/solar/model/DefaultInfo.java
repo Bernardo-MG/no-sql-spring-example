@@ -11,9 +11,9 @@ public final class DefaultInfo implements Info {
 
     private final String label;
 
-    private final Object value;
+    private final Double value;
 
-    public DefaultInfo(final String ident, final String lb, final Object val) {
+    public DefaultInfo(final String ident, final String lb, final Double val) {
         super();
 
         id = checkNotNull(ident);
@@ -32,7 +32,7 @@ public final class DefaultInfo implements Info {
     }
 
     @Override
-    public Object getValue() {
+    public Double getValue() {
         return value;
     }
 
