@@ -311,6 +311,7 @@
       <liquibase.version>3.10.2</liquibase.version>
       <log4j.version>2.13.3</log4j.version>
       <mockito.version>3.5.10</mockito.version>
+      <neo4j.version>3.2.14</neo4j.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.30</slf4j.version>
       <snakeyaml.version>1.26</snakeyaml.version>
@@ -403,11 +404,6 @@
          <artifactId>spring-core</artifactId>
       </dependency>
       <dependency>
-         <!-- Spring Data JPA -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-jpa</artifactId>
-      </dependency>
-      <dependency>
          <!-- Spring JDBC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-jdbc</artifactId>
@@ -483,6 +479,14 @@
          <version>${spring.boot.version}</version>
       </dependency>
       <!-- ============================================== -->
+      <!-- ================== NEO4J ===================== -->
+      <!-- ============================================== -->
+      <dependency>
+         <groupId>org.neo4j</groupId>
+         <artifactId>neo4j-ogm-embedded-driver</artifactId>
+         <version>${neo4j.version}</version>
+      </dependency>
+      <!-- ============================================== -->
       <!-- ================= ASPECTJ ==================== -->
       <!-- ============================================== -->
       <dependency>
@@ -497,42 +501,6 @@
          <artifactId>aspectjweaver</artifactId>
          <version>${aspectj.version}</version>
          <scope>runtime</scope>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ============== JPA DEPENDENCIES ============== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- JPA API -->
-         <groupId>javax.persistence</groupId>
-         <artifactId>javax.persistence-api</artifactId>
-         <version>${javaee.api.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================ HIBERNATE =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Hibernate Core -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-core</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hibernate Ehcache -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-ehcache</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hibernate validator -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-validator</artifactId>
-         <version>${hibernate.validator.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hikari CP -->
-         <groupId>com.zaxxer</groupId>
-         <artifactId>HikariCP</artifactId>
-         <version>${hikari.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================ LIQUIBASE =================== -->
