@@ -33,7 +33,7 @@ export class SolarSystemComponent implements OnInit {
     var sunWidth = (width / 4);
 
     this.displaySun(view, sunWidth, height);
-    this.displayPlanets(view, sunWidth, 0, width - sunWidth, height, planets);
+    this.displayPlanets(view, sunWidth, height / 2, width - sunWidth, height, planets);
   }
 
   /**
@@ -76,28 +76,29 @@ export class SolarSystemComponent implements OnInit {
     var planetViewHeight = height / 2;
     var planetViewSide = planetRadius * 2;
 
+    // General container
     var planetsView = view.append("g")
       .attr("id", "planets")
-      .attr("transform", "translate(" + [x, y] + ")")
-      .selectAll("g")
+      .attr("transform", "translate(" + [x + 10, y] + ")");
+
+    // Planet container
+    planetsView = planetsView.selectAll("g")
       .data(planets)
       .enter().append("g")
-      .attr("transform", (d, i) => "translate(" + [i * (planetViewSide) + planetRadius, planetViewHeight] + ")")
+      .attr("transform", (d, i) => "translate(" + [i * (planetViewSide + 10), 0] + ")");
+
+    // Planet circle
+    planetsView.append("circle")
+      .attr("class", "planet")
+      .attr("transform", (d, i) => "translate(" + [planetRadius, 0] + ")")
+      .attr("r", planetRadius)
       .on("click", (event, data) => this.router.navigate(['planet', data.name]));
 
     // Planet name
     planetsView.append("text")
       .attr("class", "label")
-      .attr("transform", "translate(" + [-planetRadius, -(planetRadius + 10)] + ")")
+      .attr("transform", "translate(" + [0, -(planetRadius + 10)] + ")")
       .text(d => d.name);
-
-    // Planets are drawn
-    planetsView.each(function (d) {
-      var x = d3.select(this);
-      var planet = x.append("g").append("circle")
-        .attr("class", "planet")
-        .attr("r", planetRadius);
-    });
   }
 
 }
