@@ -57,11 +57,10 @@ export class PlanetComponent implements OnInit {
       .attr("class", "info");
 
     // Planet info
-    planet?.info.forEach(function (d, i) {
-      info.append("text")
-        .attr("y", i * 24)
-        .text(d.label + ": " + d.value);
-    });
+    info.selectAll("g").data(planet.info)
+      .enter().append("text")
+      .attr("y", (d, i) => i * 24)
+      .text((d) => d.label + ": " + d.value);
 
     // Planet circle
     boundingArea.append("circle")
