@@ -7,4 +7,6 @@ public interface Planet {
 
     public String getName();
 
+    public Long getPosition();
+
 }

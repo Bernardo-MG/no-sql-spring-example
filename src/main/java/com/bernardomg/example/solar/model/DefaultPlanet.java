@@ -9,6 +9,8 @@ public final class DefaultPlanet implements Planet {
 
     private String         name;
 
+    private Long           position;
+
     public DefaultPlanet() {
         super();
     }
@@ -23,12 +25,21 @@ public final class DefaultPlanet implements Planet {
         return name;
     }
 
+    @Override
+    public Long getPosition() {
+        return position;
+    }
+
     public final void setInfo(final Iterable<Info> info) {
         this.info = info;
     }
 
     public final void setName(final String name) {
         this.name = name;
+    }
+
+    public void setPosition(final Long position) {
+        this.position = position;
     }
 
     @Override

@@ -294,8 +294,8 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <aspectj.version>1.9.6</aspectj.version>
-      <byteBuddy.version>1.10.13</byteBuddy.version>
       <caffeine.version>2.6.2</caffeine.version>
+      <classgraph.version>4.8.90</classgraph.version>
       <classmate.version>1.5.1</classmate.version>
       <commons.logging.version>1.2</commons.logging.version>
       <glassfish.el>2.2</glassfish.el>
@@ -309,17 +309,18 @@
       <javaee.api.version>2.2</javaee.api.version>
       <javassist.version>3.25.0-GA</javassist.version>
       <jsonpath.version>2.4.0</jsonpath.version>
-      <junit.jupiter.version>5.6.2</junit.jupiter.version>
+      <junit.jupiter.version>5.7.0</junit.jupiter.version>
       <log4j.version>2.13.3</log4j.version>
-      <mockito.version>3.5.10</mockito.version>
-      <neo4j.version>3.5.26</neo4j.version>
-      <neo4j.driver.version>3.2.14</neo4j.driver.version>
+      <mockito.version>3.7.0</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.30</slf4j.version>
-      <snakeyaml.version>1.26</snakeyaml.version>
-      <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
-      <spring.data.train.version>Neumann-SR3</spring.data.train.version>
-      <spring.version>5.2.8.RELEASE</spring.version>
+      <snakeyaml.version>1.27</snakeyaml.version>
+      <spring.boot.neo4j.version>0.1.1</spring.boot.neo4j.version>
+      <spring.boot.version>2.4.0</spring.boot.version>
+      <spring.data.commons.version>2.4.2</spring.data.commons.version>
+      <spring.data.neo4j.version>6.0.2</spring.data.neo4j.version>
+      <spring.data.train.version>Neumann-SR6</spring.data.train.version>
+      <spring.version>5.3.2</spring.version>
       <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
       <webappRunner.version>8.5.30.0</webappRunner.version>
       <!-- ============================================== -->
@@ -480,20 +481,11 @@
          <artifactId>spring-boot-starter-log4j2</artifactId>
          <version>${spring.boot.version}</version>
       </dependency>
-      <!-- ============================================== -->
-      <!-- ================== NEO4J ===================== -->
-      <!-- ============================================== -->
       <dependency>
-         <!-- Neo4J -->
-         <groupId>org.neo4j</groupId>
-         <artifactId>neo4j</artifactId>
-         <version>${neo4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Neo4J Embedded Driver -->
-         <groupId>org.neo4j</groupId>
-         <artifactId>neo4j-ogm-embedded-driver</artifactId>
-         <version>${neo4j.driver.version}</version>
+         <!-- Spring Boot Starter: Neo4J -->
+         <groupId>eu.michael-simons.neo4j</groupId>
+         <artifactId>neo4j-migrations-spring-boot-starter</artifactId>
+         <version>${spring.boot.neo4j.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================= ASPECTJ ==================== -->
@@ -635,12 +627,6 @@
          <version>${commons.logging.version}</version>
       </dependency>
       <dependency>
-         <!-- Byte Buddy -->
-         <groupId>net.bytebuddy</groupId>
-         <artifactId>byte-buddy</artifactId>
-         <version>${byteBuddy.version}</version>
-      </dependency>
-      <dependency>
          <!-- Java Assist -->
          <groupId>org.javassist</groupId>
          <artifactId>javassist</artifactId>
@@ -651,6 +637,24 @@
          <groupId>com.github.ben-manes.caffeine</groupId>
          <artifactId>caffeine</artifactId>
          <version>${caffeine.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Classgraph -->
+         <groupId>io.github.classgraph</groupId>
+         <artifactId>classgraph</artifactId>
+         <version>${classgraph.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Spring Data Neo4J -->
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-neo4j</artifactId>
+         <version>${spring.data.neo4j.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Spring Data Neo4J -->
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-commons</artifactId>
+         <version>${spring.data.commons.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->

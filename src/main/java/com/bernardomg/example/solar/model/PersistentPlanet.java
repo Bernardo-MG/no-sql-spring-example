@@ -18,6 +18,8 @@ public final class PersistentPlanet implements Planet {
 
     private String         name;
 
+    private Long           position;
+
     public PersistentPlanet() {
         super();
     }
@@ -36,6 +38,10 @@ public final class PersistentPlanet implements Planet {
         return name;
     }
 
+    public Long getPosition() {
+        return position;
+    }
+
     public void setId(final Long id) {
         this.id = id;
     }
@@ -46,6 +52,10 @@ public final class PersistentPlanet implements Planet {
 
     public final void setName(final String name) {
         this.name = name;
+    }
+
+    public void setPosition(final Long position) {
+        this.position = position;
     }
 
     @Override
