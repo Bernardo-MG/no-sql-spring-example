@@ -1,13 +1,13 @@
 
 package com.bernardomg.example.solar.model;
 
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 import com.google.common.base.MoreObjects;
 
-@NodeEntity
+@Node
 public final class PersistentPlanet implements Planet {
 
     @Id
