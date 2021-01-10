@@ -5,18 +5,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.StreamSupport;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.example.solar.model.DefaultInfo;
 import com.bernardomg.example.solar.model.DefaultPlanet;
 import com.bernardomg.example.solar.model.Info;
 import com.bernardomg.example.solar.model.Planet;
+import com.bernardomg.example.solar.repository.PlanetRepository;
 
 @Service
 public final class DefaultPlanetService implements PlanetService {
 
-    public DefaultPlanetService() {
+    private final PlanetRepository repository;
+
+    @Autowired
+    public DefaultPlanetService(final PlanetRepository repo) {
         super();
+
+        repository = repo;
     }
 
     @Override
@@ -122,7 +129,9 @@ public final class DefaultPlanetService implements PlanetService {
 
         planets.add(planet);
 
-        return planets;
+        // return planets;
+
+        return repository.findAll();
     }
 
 }

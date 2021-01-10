@@ -3,6 +3,8 @@ package com.bernardomg.example.solar.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
+
 public final class DefaultInfo implements Info {
 
     private final String id;
@@ -32,6 +34,12 @@ public final class DefaultInfo implements Info {
     @Override
     public Object getValue() {
         return value;
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("id", id)
+                .add("label", label).add("value", value).toString();
     }
 
 }

@@ -1,6 +1,8 @@
 
 package com.bernardomg.example.solar.model;
 
+import com.google.common.base.MoreObjects;
+
 public final class DefaultPlanet implements Planet {
 
     private Iterable<Info> info;
@@ -27,6 +29,12 @@ public final class DefaultPlanet implements Planet {
 
     public final void setName(final String name) {
         this.name = name;
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("name", name)
+                .add("info", info).toString();
     }
 
 }

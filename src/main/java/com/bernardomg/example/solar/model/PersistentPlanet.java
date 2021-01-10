@@ -5,6 +5,8 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
+import com.google.common.base.MoreObjects;
+
 @NodeEntity
 public final class PersistentPlanet implements Planet {
 
@@ -44,6 +46,12 @@ public final class PersistentPlanet implements Planet {
 
     public final void setName(final String name) {
         this.name = name;
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("id", id).add("name", name)
+                .add("info", info).toString();
     }
 
 }
