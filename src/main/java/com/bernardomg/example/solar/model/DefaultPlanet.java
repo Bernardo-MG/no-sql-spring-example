@@ -5,20 +5,20 @@ import com.google.common.base.MoreObjects;
 
 public final class DefaultPlanet implements Planet {
 
-    private Iterable<Info> info;
+    // private Iterable<Info> info;
 
-    private String         name;
+    private String name;
 
-    private Long           position;
+    private Long   position;
 
     public DefaultPlanet() {
         super();
     }
 
-    @Override
-    public final Iterable<Info> getInfo() {
-        return info;
-    }
+    // @Override
+    // public final Iterable<Info> getInfo() {
+    // return info;
+    // }
 
     @Override
     public final String getName() {
@@ -30,9 +30,9 @@ public final class DefaultPlanet implements Planet {
         return position;
     }
 
-    public final void setInfo(final Iterable<Info> info) {
-        this.info = info;
-    }
+    // public final void setInfo(final Iterable<Info> info) {
+    // this.info = info;
+    // }
 
     public final void setName(final String name) {
         this.name = name;
@@ -44,8 +44,8 @@ public final class DefaultPlanet implements Planet {
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("name", name)
-                .add("info", info).toString();
+        return MoreObjects.toStringHelper(this).add("name", name).toString();
+        // .add("info", info).toString();
     }
 
 }

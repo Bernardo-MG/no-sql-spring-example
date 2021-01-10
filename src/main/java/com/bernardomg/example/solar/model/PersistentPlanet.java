@@ -7,18 +7,18 @@ import org.springframework.data.neo4j.core.schema.Node;
 
 import com.google.common.base.MoreObjects;
 
-@Node
+@Node("Planet")
 public final class PersistentPlanet implements Planet {
 
     @Id
     @GeneratedValue
-    private Long           id;
+    private Long   id;
 
-    private Iterable<Info> info;
+    // private Iterable<Info> info;
 
-    private String         name;
+    private String name;
 
-    private Long           position;
+    private Long   position;
 
     public PersistentPlanet() {
         super();
@@ -28,16 +28,17 @@ public final class PersistentPlanet implements Planet {
         return id;
     }
 
-    @Override
-    public final Iterable<Info> getInfo() {
-        return info;
-    }
+    // @Override
+    // public final Iterable<Info> getInfo() {
+    // return info;
+    // }
 
     @Override
     public final String getName() {
         return name;
     }
 
+    @Override
     public Long getPosition() {
         return position;
     }
@@ -46,9 +47,9 @@ public final class PersistentPlanet implements Planet {
         this.id = id;
     }
 
-    public final void setInfo(final Iterable<Info> info) {
-        this.info = info;
-    }
+    // public final void setInfo(final Iterable<Info> info) {
+    // this.info = info;
+    // }
 
     public final void setName(final String name) {
         this.name = name;
@@ -61,7 +62,8 @@ public final class PersistentPlanet implements Planet {
     @Override
     public final String toString() {
         return MoreObjects.toStringHelper(this).add("id", id).add("name", name)
-                .add("info", info).toString();
+                .toString();
+        // .add("info", info).toString();
     }
 
 }
