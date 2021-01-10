@@ -80,13 +80,13 @@ export class SolarSystemComponent implements OnInit {
     // General container
     var planetsView = view.append("g")
       .attr("id", "planets")
-      .attr("transform", "translate(" + [x + 10, y] + ")");
+      .attr("transform", "translate(" + [x + margin, y] + ")");
 
     // Planet container
     planetsView = planetsView.selectAll("g")
       .data(planets)
       .enter().append("g")
-      .attr("transform", (d, i) => "translate(" + [i * (planetViewSide + 10), 0] + ")");
+      .attr("transform", (d, i) => "translate(" + [i * (planetViewSide + padding), 0] + ")");
 
     // Planet circle
     planetsView.append("circle")
@@ -98,7 +98,7 @@ export class SolarSystemComponent implements OnInit {
     // Planet name
     planetsView.append("text")
       .attr("class", "label")
-      .attr("transform", "translate(" + [0, -(planetRadius + 10)] + ")")
+      .attr("transform", "translate(" + [0, -(planetRadius + padding)] + ")")
       .text(d => d.name);
   }
 
