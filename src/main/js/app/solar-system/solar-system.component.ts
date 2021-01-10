@@ -71,10 +71,11 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} planets planets to display
    */
   private displayPlanets(view, x, y, width, height, planets: Array<Planet>) {
-    var planetViewWidth = (width / planets.length);
-    var planetRadius = planetViewWidth / 3;
-    var planetViewHeight = height / 2;
-    var planetViewSide = planetRadius * 2;
+    var padding = 10;
+    var margin = 10;
+    var reducedWith = width - margin;
+    var planetViewSide = (reducedWith / planets.length) - padding;
+    var planetRadius = planetViewSide / 2;
 
     // General container
     var planetsView = view.append("g")
