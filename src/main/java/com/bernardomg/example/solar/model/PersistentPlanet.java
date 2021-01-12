@@ -13,22 +13,21 @@ import com.google.common.base.MoreObjects;
 @Node("Planet")
 public final class PersistentPlanet implements Planet {
 
-    // private Iterable<Info> info;
-
-    @Relationship(type = "INFORMATION", direction = Direction.OUTGOING)
-    private List<PersistentInfo> info;
+    @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
+    private List<PersistentMoon> satellites;
 
     @Id
-    private String               name;
+    private String                    name;
 
-    private Long                 position;
+    private Long                      position;
 
     public PersistentPlanet() {
         super();
     }
 
-    public List<PersistentInfo> getInfo() {
-        return info;
+    @Override
+    public List<PersistentMoon> getSatellites() {
+        return satellites;
     }
 
     @Override
@@ -41,8 +40,8 @@ public final class PersistentPlanet implements Planet {
         return position;
     }
 
-    public void setInfo(final List<PersistentInfo> info) {
-        this.info = info;
+    public void setSatellites(final List<PersistentMoon> satellites) {
+        this.satellites = satellites;
     }
 
     public final void setName(final String name) {
@@ -56,7 +55,7 @@ public final class PersistentPlanet implements Planet {
     @Override
     public final String toString() {
         return MoreObjects.toStringHelper(this).add("name", name)
-                .add("info", info).toString();
+                .add("satellites", satellites).toString();
     }
 
 }
