@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SolarSystemComponent } from './solar-system/solar-system.component';
 import { PlanetComponent } from './planet/planet.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PlanetComponent } from './planet/planet.component';
     HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,

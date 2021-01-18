@@ -1,2 +1,9 @@
 <button mat-button routerLink="/system">Back</button>
-<figure id="planet_view"></figure>
+<div fxLayout="row" fxLayoutAlign="space-between">
+    <div fxFlex="20">
+        <figure id="planet_view"></figure>
+    </div>
+    <div fxFlex="80">
+        <h2>{{planet.name}}</h2>
+    </div>
+</div>
