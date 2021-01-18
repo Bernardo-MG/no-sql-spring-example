@@ -15,7 +15,7 @@ export class PlanetComponent implements OnInit {
   w = 960;
   h = 500;
 
-  @Input() planet: Planet;
+  @Input() planet: Planet = { name: '' } as Planet;
 
   constructor(
     private planetsService: PlanetsService,
