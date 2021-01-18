@@ -14,7 +14,7 @@ class MockedPlanetsService {
   }
 
   getPlanet(id: String): Observable<Planet> {
-    return of({} as Planet);
+    return of({ name: '' } as Planet);
   }
 
 }
