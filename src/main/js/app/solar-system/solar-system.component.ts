@@ -20,6 +20,7 @@ export class SolarSystemComponent implements OnInit {
     var view = d3.select("figure#main_view")
       .append("svg")
       .attr("id", "mainGraphic")
+      .attr("class", "graphic_view")
       .append("g");
 
     this.planetsService.getPlanets().subscribe(planets => this.display(view, planets));

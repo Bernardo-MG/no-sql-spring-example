@@ -12,9 +12,6 @@ import { PlanetsService } from '../planets.service';
 })
 export class PlanetComponent implements OnInit {
 
-  w = 960;
-  h = 500;
-
   @Input() planet: Planet = { name: '' } as Planet;
 
   constructor(
@@ -30,12 +27,16 @@ export class PlanetComponent implements OnInit {
   }
 
   display() {
-    var view = d3.select("figure#planet_view").append("svg")
-      .attr("width", this.w)
-      .attr("height", this.h)
+    var mainView = d3.select("figure#planet_view");
+    var view = mainView.append("svg")
+      .attr("id", "mainGraphic")
+      .attr("class", "graphic_view")
       .append("g");
+    var node = mainView.node();
+    var width = (node as HTMLElement).clientWidth;
+    var height = (node as HTMLElement).clientHeight;
 
-    this.displayPlanetInfo(view, (this.w / 4), 0, this.w - (this.w / 4), this.h);
+    this.displayPlanetInfo(view, (width / 4), 0, width - (width / 4), height);
   }
 
   /**
