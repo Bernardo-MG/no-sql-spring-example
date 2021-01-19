@@ -31,7 +31,7 @@ export class SolarSystemComponent implements OnInit {
     var node = mainView.node();
     var width = (node as HTMLElement).clientWidth;
     var height = (node as HTMLElement).clientHeight;
-    var sunWidth = (width / 4);
+    var sunWidth = (width / 8);
 
     this.displaySun(view, sunWidth, height);
     this.displayPlanets(view, sunWidth, height / 2, width - sunWidth, height, planets);
@@ -48,8 +48,6 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} planets planets to display
    */
   private displaySun(view, width, height) {
-    var radius = width * 5;
-    var xpos = 0 - radius + 412;
     var ypos = height / 2;
 
     var arcGen = d3.arc()
