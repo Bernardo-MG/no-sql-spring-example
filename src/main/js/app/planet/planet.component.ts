@@ -27,40 +27,34 @@ export class PlanetComponent implements OnInit {
   }
 
   display() {
-    var mainView = d3.select("figure#planet_view");
-    var view = mainView.append("svg")
+    var view = d3.select("figure#planet_view")
+      .append("svg")
       .attr("id", "mainGraphic")
       .attr("class", "graphic_view")
       .append("g");
+    var mainView = d3.select("svg#mainGraphic");
     var node = mainView.node();
-    var width = (node as HTMLElement).clientWidth;
-    var height = (node as HTMLElement).clientHeight;
+    var width = (node as SVGGElement).clientWidth;
+    var height = (node as SVGGElement).clientHeight;
 
-    this.displayPlanetInfo(view, (width / 4), 0, width - (width / 4), height);
+    this.displayPlanetInfo(view, width / 9);
   }
 
   /**
-   * Displays the planet info.
+   * Displays the planet.
    * 
-   * @param {*} x x axis position
-   * @param {*} y y axis position
+   * @param {*} view where the image will be drawn
    * @param {*} width view width
-   * @param {*} height view height
-   * @param {*} planet planet data
    */
-  private displayPlanetInfo(view, x, y, width, height) {
-    var planetViewWidth = (width / 3);
-    var planetRadius = planetViewWidth / 3;
-
+  private displayPlanetInfo(view, radius) {
     var boundingArea = view.append("g")
-      .attr("id", "planet_info")
-      .attr("transform", "translate(" + [x, y] + ")");
+      .attr("id", "planet_info");
 
     // Planet circle
     boundingArea.append("circle")
       .attr("class", "planet")
-      .attr("transform", "translate(" + [(planetViewWidth / 2), (planetViewWidth / 2)] + ")")
-      .attr("r", planetRadius)
+      .attr("transform", "translate(" + [radius, radius] + ")")
+      .attr("r", radius)
       .style("fill", "none");
   }
 
