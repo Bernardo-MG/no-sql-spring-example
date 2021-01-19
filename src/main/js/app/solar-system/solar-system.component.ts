@@ -52,13 +52,19 @@ export class SolarSystemComponent implements OnInit {
     var xpos = 0 - radius + 412;
     var ypos = height / 2;
 
-    var sun = view.append("g")
-      .attr("id", "sun")
-      .attr("transform", "translate(" + [xpos, ypos] + ")");
+    var arcGen = d3.arc()
+      .innerRadius(0)
+      .outerRadius(width)
+      .startAngle(0)
+      .endAngle(Math.PI);
 
-    sun.append("circle")
+    view
+      .append("path")
+      .attr("id", "sun")
       .attr("class", "planet")
-      .attr("r", radius);
+      .attr("transform", "translate(" + [0, ypos] + ")")
+      .attr("d", arcGen)
+      .attr("stroke-width", 1);
   }
 
   /**
