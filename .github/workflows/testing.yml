@@ -19,6 +19,6 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
     - Updates Chrome
-      run: sudo apt-get --only-upgrade install google-chrome-stable
+      run: apt-get --only-upgrade install google-chrome-stable
     - name: Run all tests
       run: mvn clean verify -P${{ matrix.env }} -Dspring.profiles.active=test
