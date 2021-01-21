@@ -1,9 +1,11 @@
-<button mat-button routerLink="/system">Back</button>
-<div fxLayout="row" fxLayoutAlign="space-between">
-    <div fxFlex="20">
+<mat-card>
+    <mat-card-title>
+        <h1>{{planet.name}}</h1>
+    </mat-card-title>
+    <mat-card-content>
         <figure id="planet_view"></figure>
-    </div>
-    <div fxFlex="80">
-        <h2>{{planet.name}}</h2>
-    </div>
-</div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button routerLink="/system">Back</button>
+    </mat-card-actions>
+</mat-card>

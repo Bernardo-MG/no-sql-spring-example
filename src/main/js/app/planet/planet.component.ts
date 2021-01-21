@@ -36,15 +36,16 @@ export class PlanetComponent implements OnInit {
     var node = mainView.node();
     var width = (node as SVGGElement).clientWidth;
     var height = (node as SVGGElement).clientHeight;
+    var radius = Math.min(width, height) / 4;
 
-    this.displayPlanetInfo(view, width / 9);
+    this.displayPlanetInfo(view, radius);
   }
 
   /**
    * Displays the planet.
    * 
    * @param {*} view where the image will be drawn
-   * @param {*} width view width
+   * @param {*} radius planet radius
    */
   private displayPlanetInfo(view, radius) {
     var boundingArea = view.append("g")
