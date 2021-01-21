@@ -54,8 +54,7 @@ export class PlanetComponent implements OnInit {
     boundingArea.append("circle")
       .attr("class", "planet")
       .attr("transform", "translate(" + [radius, radius] + ")")
-      .attr("r", radius)
-      .style("fill", "none");
+      .attr("r", radius);
   }
 
 }

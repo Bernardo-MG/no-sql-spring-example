@@ -32,8 +32,13 @@ export class SolarSystemComponent implements OnInit {
     var width = (node as HTMLElement).clientWidth;
     var height = (node as HTMLElement).clientHeight;
     var sunWidth = (width / 8);
+    
+    mainView.attr('viewBox', '0 0 ' + width + ' ' + height)
+      .attr('preserveAspectRatio', 'xMinYMin');
 
-    this.displaySun(view, sunWidth);
+    var radius = Math.min(sunWidth, height);
+
+    this.displaySun(view, radius);
     this.displayPlanets(view, sunWidth, height / 2, width - sunWidth, height, planets);
   }
 
@@ -43,10 +48,10 @@ export class SolarSystemComponent implements OnInit {
    * @param {*} view where the image will be drawn
    * @param {*} width view width
    */
-  private displaySun(view, width) {
+  private displaySun(view, radius) {
     var arcGen = d3.arc()
       .innerRadius(0)
-      .outerRadius(width)
+      .outerRadius(radius)
       .startAngle(0)
       .endAngle(Math.PI);
 
@@ -95,8 +100,8 @@ export class SolarSystemComponent implements OnInit {
 
     // Planet name
     planetsView.append("text")
-      .attr("class", "label")
-      .attr("transform", "translate(" + [0, -(planetRadius + padding)] + ")")
+      .attr("text-anchor", "start")
+      .attr("dy", -(planetRadius + padding))
       .text(d => d.name);
   }
 
