@@ -30,6 +30,7 @@ public final class DefaultPlanetService implements PlanetService {
 
     @Override
     public final Iterable<? extends Planet> getPlanets() {
+        // TODO: Add sorting. And sort by distance from the sun
         return repository.findAll();
     }
 
