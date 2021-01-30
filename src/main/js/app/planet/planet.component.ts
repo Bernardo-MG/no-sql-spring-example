@@ -12,7 +12,7 @@ import { PlanetsService } from '../planets.service';
 })
 export class PlanetComponent implements OnInit {
 
-  @Input() planet: Planet = { name: '' } as Planet;
+  @Input() planet: Planet = { name: '', satellites: [] } as Planet;
 
   constructor(
     private planetsService: PlanetsService,
@@ -21,12 +21,12 @@ export class PlanetComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.planetsService.getPlanet(params['id']).subscribe(d => this.planet = d);
+      // this.planetsService.getPlanet(params['id']).subscribe(d => this.planet = d);
+      this.planetsService.getPlanet(params['id']).subscribe((d) => this.display(d));
     });
-    this.display();
   }
 
-  display() {
+  display(d) {
     var view = d3.select("figure#planet_view")
       .append("svg")
       .attr("id", "planet")
@@ -37,7 +37,7 @@ export class PlanetComponent implements OnInit {
     var width = (node as SVGGElement).clientWidth;
     var height = (node as SVGGElement).clientHeight;
 
-    this.displayPlanet(view, width);
+    this.displayPlanet(view, width, d);
   }
 
   /**
@@ -47,7 +47,7 @@ export class PlanetComponent implements OnInit {
    * @param {*} y y axis position
    * @param {*} width view width
    */
-  private displayPlanet(view, width) {
+  private displayPlanet(view, width, data) {
     var planetRadius = width / 10;
 
     var boundingArea = view.append("g")
@@ -62,7 +62,7 @@ export class PlanetComponent implements OnInit {
 
     planetView.append("path")
       .attr("class", "graticule")
-      .on("mouseover", (d) => this.handleShowName(this.planet.name))
+      .on("mouseover", (d) => this.handleShowName(data.name))
       .on("mouseout", this.handleHideName)
       .datum(graticule)
       .attr("transform", "translate(" + [(width / 2) - planetRadius, (width / 2)] + ")")
@@ -70,7 +70,7 @@ export class PlanetComponent implements OnInit {
 
     // Satellite orbit
     planetView.selectAll("g")
-      .data(this.planet.satellites).enter()
+      .data(data.satellites).enter()
       .append("circle")
       .attr("class", "orbit")
       .attr("transform", "translate(" + [(width / 2), (width / 2)] + ")")
@@ -78,7 +78,7 @@ export class PlanetComponent implements OnInit {
 
     // Satellite point
     planetView.selectAll("g")
-      .data(this.planet.satellites).enter()
+      .data(data.satellites).enter()
       .append("circle")
       .attr("id", (d) => "satellite_" + d.name)
       .on("mouseover", (d) => this.handleShowName(d.name))

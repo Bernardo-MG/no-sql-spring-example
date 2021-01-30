@@ -1,6 +1,7 @@
 
 package com.bernardomg.example.solar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.neo4j.core.schema.Id;
@@ -14,12 +15,12 @@ import com.google.common.base.MoreObjects;
 public final class PersistentPlanet implements Planet {
 
     @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
-    private List<PersistentMoon> satellites;
+    private List<PersistentMoon> satellites = new ArrayList<>();
 
     @Id
-    private String                    name;
+    private String               name;
 
-    private Long                      position;
+    private Long                 position;
 
     public PersistentPlanet() {
         super();
