@@ -27,6 +27,8 @@ export class PlanetComponent implements OnInit {
   }
 
   display(d) {
+    this.planet = d;
+    
     var view = d3.select("figure#planet_view")
       .append("svg")
       .attr("id", "planet")
