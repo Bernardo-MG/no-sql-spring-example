@@ -37,7 +37,7 @@ export class PlanetComponent implements OnInit {
     var width = (node as SVGGElement).clientWidth;
     var height = (node as SVGGElement).clientHeight;
 
-    this.displayPlanet(view, width, d);
+    this.displayPlanet(view, width, height, d);
   }
 
   /**
@@ -47,8 +47,8 @@ export class PlanetComponent implements OnInit {
    * @param {*} y y axis position
    * @param {*} width view width
    */
-  private displayPlanet(view, width, data) {
-    var planetRadius = width / 10;
+  private displayPlanet(view, width, height, data) {
+    var planetRadius = Math.min(width, height) / 10;
 
     var boundingArea = view.append("g")
       .attr("id", "planet_info");
@@ -65,7 +65,7 @@ export class PlanetComponent implements OnInit {
       .on("mouseover", (d) => this.handleShowName(data.name))
       .on("mouseout", this.handleHideName)
       .datum(graticule)
-      .attr("transform", "translate(" + [(width / 2) - planetRadius, (width / 2)] + ")")
+      .attr("transform", "translate(" + [(width / 2) - planetRadius, (height / 2)] + ")")
       .attr("d", path);
 
     // Satellite orbit
@@ -73,7 +73,7 @@ export class PlanetComponent implements OnInit {
       .data(data.satellites).enter()
       .append("circle")
       .attr("class", "orbit")
-      .attr("transform", "translate(" + [(width / 2), (width / 2)] + ")")
+      .attr("transform", "translate(" + [(width / 2), (height / 2)] + ")")
       .attr("r", (d, i) => (i + 2) * planetRadius);
 
     // Satellite point
@@ -85,7 +85,7 @@ export class PlanetComponent implements OnInit {
       .on("mouseout", this.handleHideName)
       .attr("cx", (d, i) => (i + 2) * planetRadius)
       .attr("r", planetRadius / 5)
-      .attr("transform", "translate(" + [(width / 2), (width / 2)] + ")");
+      .attr("transform", "translate(" + [(width / 2), (height / 2)] + ")");
   }
 
   private handleShowName(name) {
