@@ -17,22 +17,35 @@ export class SolarSystemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    var view = d3.select("figure#main_view")
+    var view = d3.select("figure#main_graphic")
       .append("svg")
-      .attr("id", "mainGraphic")
-      .attr("class", "graphic_view")
+      .attr("id", "solar_system")
+      .attr("class", "full_size")
       .append("g");
+
+    var svgDefs = d3.select("#solar_system").append('defs');
+
+    var mainGradient = svgDefs.append('radialGradient')
+      .attr('id', 'sunGradient');
+
+    mainGradient.append('stop')
+      .attr('class', 'stop-left')
+      .attr('offset', '0');
+
+    mainGradient.append('stop')
+      .attr('class', 'stop-right')
+      .attr('offset', '1');
 
     this.planetsService.getPlanets().subscribe(planets => this.display(view, planets));
   }
 
   display(view, planets: Planet[]) {
-    var mainView = d3.select("svg#mainGraphic");
+    var mainView = d3.select("svg#solar_system");
     var node = mainView.node();
     var width = (node as HTMLElement).clientWidth;
     var height = (node as HTMLElement).clientHeight;
     var sunWidth = (width / 8);
-    
+
     mainView.attr('viewBox', '0 0 ' + width + ' ' + height)
       .attr('preserveAspectRatio', 'xMinYMin');
 
@@ -58,7 +71,7 @@ export class SolarSystemComponent implements OnInit {
     view
       .append("path")
       .attr("id", "sun")
-      .attr("class", "planet centered")
+      .attr("class", "sun centered")
       .attr("d", arcGen)
       .attr("stroke-width", 1);
   }
@@ -87,22 +100,52 @@ export class SolarSystemComponent implements OnInit {
 
     // Planet container
     planetsView = planetsView.selectAll("g")
-      .data(planets)
-      .enter().append("g")
+      .data(planets).enter()
+      .append("g")
       .attr("transform", (d, i) => "translate(" + [i * (planetViewSide + padding), 0] + ")");
 
-    // Planet circle
-    planetsView.append("circle")
-      .attr("class", "planet")
-      .attr("transform", (d, i) => "translate(" + [planetRadius, 0] + ")")
-      .attr("r", planetRadius)
-      .on("click", (event, data) => this.router.navigate(['planet', data.name]));
+    // Graticule
+    var path = this.getPath(planetRadius);
+
+    var graticule = this.getGraticule(planetRadius);
+
+    const index = d3.local();
+
+    planetsView.append("path")
+      .attr("class", "graticule clickable")
+      .datum(graticule)
+      .attr("d", path)
+      .each((d, i) => index.set(d, i))
+      .on("click", (event, data) => this.router.navigate(['planet', planets[index.get(data) as number].name]));
 
     // Planet name
     planetsView.append("text")
       .attr("text-anchor", "start")
       .attr("dy", -(planetRadius + padding))
       .text(d => d.name);
+  }
+
+  private getPath(radius) {
+    var radiusScale = d3.scaleLinear()
+      .domain([0, radius])
+      .range([0, radius]);
+
+    var projection = d3.geoOrthographic()
+      .translate([radius, 0])
+      .scale(radiusScale(radius));
+
+    return d3.geoPath()
+      .projection(projection);
+  }
+
+  private getGraticule(radius) {
+    var graticuleScale = d3.scaleLinear()
+      .domain([0, radius])
+      .range([0, 10]);
+
+    var graticule = d3.geoGraticule();
+
+    return graticule.step([graticuleScale(radius), graticuleScale(radius)]);
   }
 
 }

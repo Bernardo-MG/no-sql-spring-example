@@ -29,10 +29,10 @@ export class PlanetComponent implements OnInit {
   display() {
     var view = d3.select("figure#planet_view")
       .append("svg")
-      .attr("id", "mainGraphic")
-      .attr("class", "graphic_view")
+      .attr("id", "planet")
+      .attr("class", "full_size")
       .append("g");
-    var mainView = d3.select("svg#mainGraphic");
+    var mainView = d3.select("svg#planet");
     var node = mainView.node();
     var width = (node as SVGGElement).clientWidth;
     var height = (node as SVGGElement).clientHeight;

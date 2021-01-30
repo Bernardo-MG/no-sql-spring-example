@@ -1,11 +1,24 @@
-#main_view
+.stop-left
+  stop-color: white
+
+.stop-right
+  stop-color: grey
+
+#main_graphic
   background-color: white
 
-.planet
+.sun, .graticule
   stroke: black
   fill: white
 
-#planets .planet:hover
+.sun
+  fill: url(#sunGradient)
+
+.orbit
+  stroke: black
+  fill: none
+
+.clickable:hover
   stroke: black
   fill: black
   cursor: pointer
@@ -13,7 +26,7 @@
 .button:hover
   cursor: pointer
 
-.graphic_view
+.full_size
   width: 100%
   height: 600px
 
