@@ -36,26 +36,93 @@ export class PlanetComponent implements OnInit {
     var node = mainView.node();
     var width = (node as SVGGElement).clientWidth;
     var height = (node as SVGGElement).clientHeight;
-    var radius = Math.min(width, height) / 4;
 
-    this.displayPlanetInfo(view, radius);
+    this.displayPlanet(view, width);
   }
 
   /**
    * Displays the planet.
    * 
-   * @param {*} view where the image will be drawn
-   * @param {*} radius planet radius
+   * @param {*} x x axis position
+   * @param {*} y y axis position
+   * @param {*} width view width
    */
-  private displayPlanetInfo(view, radius) {
+  private displayPlanet(view, width) {
+    var planetRadius = width / 10;
+
     var boundingArea = view.append("g")
       .attr("id", "planet_info");
 
-    // Planet circle
-    boundingArea.append("circle")
-      .attr("class", "planet")
-      .attr("transform", "translate(" + [radius, radius] + ")")
-      .attr("r", radius);
+    var planetView = boundingArea.append("g");
+
+    // Graticule
+    var path = this.getPath(planetRadius);
+
+    var graticule = this.getGraticule(planetRadius);
+
+    planetView.append("path")
+      .attr("class", "graticule")
+      .on("mouseover", (d) => this.handleShowName(this.planet.name))
+      .on("mouseout", this.handleHideName)
+      .datum(graticule)
+      .attr("transform", "translate(" + [(width / 2) - planetRadius, (width / 2)] + ")")
+      .attr("d", path);
+
+    // Satellite orbit
+    planetView.selectAll("g")
+      .data(this.planet.satellites).enter()
+      .append("circle")
+      .attr("class", "orbit")
+      .attr("transform", "translate(" + [(width / 2), (width / 2)] + ")")
+      .attr("r", (d, i) => (i + 2) * planetRadius);
+
+    // Satellite point
+    planetView.selectAll("g")
+      .data(this.planet.satellites).enter()
+      .append("circle")
+      .attr("id", (d) => "satellite_" + d.name)
+      .on("mouseover", (d) => this.handleShowName(d.name))
+      .on("mouseout", this.handleHideName)
+      .attr("cx", (d, i) => (i + 2) * planetRadius)
+      .attr("r", planetRadius / 5)
+      .attr("transform", "translate(" + [(width / 2), (width / 2)] + ")");
+  }
+
+  private handleShowName(name) {
+    // Specify where to put label of text
+    d3.select("#planet_data")
+      .append("text")
+      .attr("id", "shown_name")
+      .text(function () {
+        return name;  // Value of the text
+      });
+  }
+
+  private handleHideName() {
+    d3.select("#shown_name").remove();
+  }
+
+  private getPath(radius) {
+    var radiusScale = d3.scaleLinear()
+      .domain([0, radius])
+      .range([0, radius]);
+
+    var projection = d3.geoOrthographic()
+      .translate([radius, 0])
+      .scale(radiusScale(radius));
+
+    return d3.geoPath()
+      .projection(projection);
+  }
+
+  private getGraticule(radius) {
+    var graticuleScale = d3.scaleLinear()
+      .domain([0, radius])
+      .range([0, 10]);
+
+    var graticule = d3.geoGraticule();
+
+    return graticule.step([graticuleScale(radius), graticuleScale(radius)]);
   }
 
 }

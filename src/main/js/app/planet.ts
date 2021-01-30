@@ -1,7 +1,7 @@
 
-import { Info } from 'app/info';
+import { Satellite } from 'app/satellite';
 
 export interface Planet {
-    info: Array<Info>;
+    satellites: Array<Satellite>;
     name: string;
 }
