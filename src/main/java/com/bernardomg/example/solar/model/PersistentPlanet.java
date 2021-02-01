@@ -12,7 +12,7 @@ import org.springframework.data.neo4j.core.schema.Relationship.Direction;
 import com.google.common.base.MoreObjects;
 
 @Node("Planet")
-public final class PersistentPlanet implements Planet {
+public class PersistentPlanet implements Planet {
 
     @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
     private List<PersistentMoon> satellites = new ArrayList<>();
@@ -32,7 +32,7 @@ public final class PersistentPlanet implements Planet {
     }
 
     @Override
-    public final String getName() {
+    public String getName() {
         return name;
     }
 
@@ -45,7 +45,7 @@ public final class PersistentPlanet implements Planet {
         this.satellites = satellites;
     }
 
-    public final void setName(final String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
