@@ -113,26 +113,6 @@
          </build>
       </profile>
       <!-- ============================================== -->
-      <!-- ============= DATABASE PROFILES ============== -->
-      <!-- ============================================== -->
-      <profile>
-         <!-- H2 database profile -->
-         <!-- Prepares the project to make use of an H2 in-memory database -->
-         <id>h2</id>
-         <activation>
-            <!-- Active by default so it can be installed by CI -->
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <dependencies>
-            <dependency>
-               <!-- H2 database -->
-               <groupId>com.h2database</groupId>
-               <artifactId>h2</artifactId>
-               <version>${h2.version}</version>
-            </dependency>
-         </dependencies>
-      </profile>
-      <!-- ============================================== -->
       <!-- =============== BUILD PROFILES =============== -->
       <!-- ============================================== -->
       <profile>
@@ -314,43 +294,46 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <aspectj.version>1.9.6</aspectj.version>
-      <byteBuddy.version>1.10.13</byteBuddy.version>
+      <caffeine.version>2.6.2</caffeine.version>
+      <classgraph.version>4.8.90</classgraph.version>
       <classmate.version>1.5.1</classmate.version>
       <commons.logging.version>1.2</commons.logging.version>
       <glassfish.el>2.2</glassfish.el>
       <guava.version>29.0-jre</guava.version>
-      <h2.version>1.4.200</h2.version>
       <hamcrest.version>2.2</hamcrest.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.version>5.4.21.Final</hibernate.version>
       <hikari.version>3.4.5</hikari.version>
       <itext.version>5.5.13.1</itext.version>
-      <jackson.version>2.11.2</jackson.version>
+      <jackson.version>2.12.1</jackson.version>
       <javaee.api.version>2.2</javaee.api.version>
+      <javassist.version>3.25.0-GA</javassist.version>
       <jsonpath.version>2.4.0</jsonpath.version>
-      <junit.jupiter.version>5.6.2</junit.jupiter.version>
-      <liquibase.version>3.10.2</liquibase.version>
+      <junit.jupiter.version>5.7.0</junit.jupiter.version>
       <log4j.version>2.13.3</log4j.version>
-      <mockito.version>3.5.10</mockito.version>
+      <mockito.version>3.7.0</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.30</slf4j.version>
-      <snakeyaml.version>1.26</snakeyaml.version>
-      <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
-      <spring.data.train.version>Neumann-SR3</spring.data.train.version>
-      <spring.version>5.2.8.RELEASE</spring.version>
-      <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+      <snakeyaml.version>1.27</snakeyaml.version>
+      <spring.boot.neo4j.version>0.1.1</spring.boot.neo4j.version>
+      <spring.boot.version>2.4.0</spring.boot.version>
+      <spring.data.commons.version>2.4.2</spring.data.commons.version>
+      <spring.data.neo4j.version>6.0.2</spring.data.neo4j.version>
+      <spring.data.train.version>Neumann-SR6</spring.data.train.version>
+      <spring.version>5.3.2</spring.version>
+      <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
       <webappRunner.version>8.5.30.0</webappRunner.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.frontend.node.version>v12.3.1</plugin.frontend.node.version>
-      <plugin.frontend.npm.version>6.9.0</plugin.frontend.npm.version>
+      <plugin.frontend.node.version>v14.15.4</plugin.frontend.node.version>
+      <plugin.frontend.npm.version>6.14.11</plugin.frontend.npm.version>
       <plugin.frontend.version>1.10.0</plugin.frontend.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.0.8</site.skin.version>
+      <site.skin.version>2.0.10</site.skin.version>
    </properties>
 
    <!-- ********************************************** -->
@@ -424,11 +407,6 @@
          <artifactId>spring-core</artifactId>
       </dependency>
       <dependency>
-         <!-- Spring Data JPA -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-jpa</artifactId>
-      </dependency>
-      <dependency>
          <!-- Spring JDBC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-jdbc</artifactId>
@@ -480,9 +458,9 @@
          <version>${spring.boot.version}</version>
       </dependency>
       <dependency>
-         <!-- Spring Boot Starter: JPA -->
+         <!-- Spring Boot Starter: Neo4J -->
          <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-data-jpa</artifactId>
+         <artifactId>spring-boot-starter-data-neo4j</artifactId>
          <version>${spring.boot.version}</version>
       </dependency>
       <dependency>
@@ -503,6 +481,12 @@
          <artifactId>spring-boot-starter-log4j2</artifactId>
          <version>${spring.boot.version}</version>
       </dependency>
+      <dependency>
+         <!-- Spring Boot Starter: Neo4J -->
+         <groupId>eu.michael-simons.neo4j</groupId>
+         <artifactId>neo4j-migrations-spring-boot-starter</artifactId>
+         <version>${spring.boot.neo4j.version}</version>
+      </dependency>
       <!-- ============================================== -->
       <!-- ================= ASPECTJ ==================== -->
       <!-- ============================================== -->
@@ -518,57 +502,6 @@
          <artifactId>aspectjweaver</artifactId>
          <version>${aspectj.version}</version>
          <scope>runtime</scope>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ============== JPA DEPENDENCIES ============== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- JPA API -->
-         <groupId>javax.persistence</groupId>
-         <artifactId>javax.persistence-api</artifactId>
-         <version>${javaee.api.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================ HIBERNATE =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Hibernate Core -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-core</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hibernate Ehcache -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-ehcache</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hibernate validator -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-validator</artifactId>
-         <version>${hibernate.validator.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hikari CP -->
-         <groupId>com.zaxxer</groupId>
-         <artifactId>HikariCP</artifactId>
-         <version>${hikari.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================ LIQUIBASE =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Liquibase -->
-         <groupId>org.liquibase</groupId>
-         <artifactId>liquibase-core</artifactId>
-         <version>${liquibase.version}</version>
-         <exclusions>
-            <exclusion>
-               <groupId>ch.qos.logback</groupId>
-               <artifactId>logback-classic</artifactId>
-            </exclusion>
-         </exclusions>
       </dependency>
       <!-- ============================================== -->
       <!-- ================ SNAKEYAML =================== -->
@@ -694,10 +627,34 @@
          <version>${commons.logging.version}</version>
       </dependency>
       <dependency>
-         <!-- Byte Buddy -->
-         <groupId>net.bytebuddy</groupId>
-         <artifactId>byte-buddy</artifactId>
-         <version>${byteBuddy.version}</version>
+         <!-- Java Assist -->
+         <groupId>org.javassist</groupId>
+         <artifactId>javassist</artifactId>
+         <version>${javassist.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Caffeine -->
+         <groupId>com.github.ben-manes.caffeine</groupId>
+         <artifactId>caffeine</artifactId>
+         <version>${caffeine.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Classgraph -->
+         <groupId>io.github.classgraph</groupId>
+         <artifactId>classgraph</artifactId>
+         <version>${classgraph.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Spring Data Neo4J -->
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-neo4j</artifactId>
+         <version>${spring.data.neo4j.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Spring Data Neo4J -->
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-commons</artifactId>
+         <version>${spring.data.commons.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->

@@ -1,24 +1,37 @@
-#main_view
+.stop-left
+  stop-color: white
+
+.stop-right
+  stop-color: grey
+
+#main_graphic
   background-color: white
 
-.label
-  font-family: monospace
-  opacity: 1
-  font-size: 10px
-
-.info
-  font-family: monospace
-  opacity: 1
-  font-size: 8px
-
-.planet
+.sun, .graticule
   stroke: black
   fill: white
 
-#planets .planet:hover
+.sun
+  fill: url(#sunGradient)
+
+.orbit
+  stroke: black
+  fill: none
+
+.clickable:hover
   stroke: black
   fill: black
   cursor: pointer
 
-.button:hover 
+.button:hover
   cursor: pointer
+
+.full_size
+  width: 100%
+  height: 600px
+
+.centered
+  transform: translate(0, 50%)
+
+svg text
+  font-size: 2em
