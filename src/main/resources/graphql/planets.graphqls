@@ -1,0 +1,17 @@
+schema {
+   query: Query
+}
+
+type Query {
+   allPlanets: [Planet] 
+}
+
+type Planet {
+   name: String !
+   position: Int !
+   satellites: [Satellite !]
+}
+
+type Satellite {
+   name: String !
+}
