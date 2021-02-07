@@ -43,13 +43,13 @@ import graphql.GraphQL;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/api/planet")
-public class PlanetGraphqlController {
+@RequestMapping("/api")
+public class GraphqlController {
 
     private GraphQL graphql;
 
     @Autowired
-    public PlanetGraphqlController(final GraphQL gql) {
+    public GraphqlController(final GraphQL gql) {
         super();
 
         graphql = checkNotNull(gql);
