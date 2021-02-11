@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Planet } from './planet';
 import { ApiResponse } from './api-response';
 import { catchError, map } from 'rxjs/operators';
+import { Apollo, gql } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,29 @@ export class PlanetsService {
   private planetsUrl = 'http://localhost:8080/rest/planet';  // URL to web api
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private apollo: Apollo
   ) { }
 
   getPlanets(): Observable<Planet[]> {
+    this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            allPlanets {
+              name
+              position
+              satellites {
+                name
+              }
+            }
+          }
+        `,
+      })
+      .valueChanges.subscribe((result: any) => {
+        console.log(result);
+      });
+
     return this.http.get<ApiResponse<Planet[]>>(this.planetsUrl).pipe(
       map((response: ApiResponse<Planet[]>) => { return response.content }),
       catchError(this.handleError<Planet[]>('getPlanets', undefined))

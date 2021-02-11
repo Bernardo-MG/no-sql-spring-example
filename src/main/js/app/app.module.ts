@@ -16,6 +16,10 @@ import { AppComponent } from './app.component';
 import { SolarSystemComponent } from './solar-system/solar-system.component';
 import { PlanetComponent } from './planet/planet.component';
 
+import {APOLLO_OPTIONS} from 'apollo-angular';
+import {HttpLink} from 'apollo-angular/http';
+import {InMemoryCache} from '@apollo/client/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,20 @@ import { PlanetComponent } from './planet/planet.component';
     MatSidenavModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'http://localhost:8080/api',
+          }),
+        };
+      },
+      deps: [HttpLink],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

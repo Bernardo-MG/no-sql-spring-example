@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bernardomg.example.solar.graphql.Query;
+
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 
@@ -56,8 +58,8 @@ public class GraphqlController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> movies(@RequestBody final String query) {
-        final ExecutionResult execute = graphql.execute(query);
+    public ResponseEntity<Object> postPlanets(@RequestBody final Query query) {
+        final ExecutionResult execute = graphql.execute(query.getQuery());
         return new ResponseEntity<>(execute, HttpStatus.OK);
     }
 
