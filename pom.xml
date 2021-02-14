@@ -328,7 +328,7 @@
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.frontend.node.version>v14.15.4</plugin.frontend.node.version>
+      <plugin.frontend.node.version>v14.15.5</plugin.frontend.node.version>
       <plugin.frontend.npm.version>6.14.11</plugin.frontend.npm.version>
       <plugin.frontend.version>1.10.0</plugin.frontend.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
