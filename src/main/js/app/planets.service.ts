@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Planet } from './planet';
+import { PlanetResponse } from './planetResponse';
 import { ApiResponse } from './api-response';
 import { catchError, map } from 'rxjs/operators';
 import { Apollo, gql } from 'apollo-angular';
+import { ApolloQueryResult } from '@apollo/client/core';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,7 @@ export class PlanetsService {
   ) { }
 
   getPlanets(): Observable<Planet[]> {
-    this.apollo
+    return this.apollo
       .watchQuery({
         query: gql`
           {
@@ -33,16 +36,7 @@ export class PlanetsService {
           }
         `,
       })
-      .valueChanges.subscribe((result: any) => {
-        console.log(result);
-      });
-
-    return this.http.get<ApiResponse<Planet[]>>(this.planetsUrl).pipe(
-      map((response: ApiResponse<Planet[]>) => { return response.content }),
-      catchError(this.handleError<Planet[]>('getPlanets', undefined))
-    ).pipe(
-      catchError(this.handleError<Planet[]>('getPlanets', undefined))
-    );
+      .valueChanges.pipe(map((response: ApolloQueryResult<PlanetResponse>) => { return response.data.allPlanets }));
   }
 
   /**
