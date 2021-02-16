@@ -56,13 +56,24 @@ export class PlanetsService {
     };
   }
 
-  getPlanet(id: String): Observable<Planet> {
-    return this.http.get<ApiResponse<Planet>>(this.planetsUrl + "/" + id).pipe(
-      map((response: ApiResponse<Planet>) => { return response.content }),
-      catchError(this.handleError<Planet>('getPlanet', undefined))
-    ).pipe(
-      catchError(this.handleError<Planet>('getPlanet', undefined))
-    );
+  getPlanet(planet: String): Observable<Planet> {
+    const id = planet.toString();
+    return this.apollo
+      .watchQuery({
+        query: gql`
+          query Query($id: String!) {
+            planet(id: $id) {
+              name
+              position
+              satellites {
+                name
+              }
+            }
+          }
+        `,
+        variables: { id }
+      })
+      .valueChanges.pipe(map((response: ApolloQueryResult<PlanetResponse>) => { return response.data.planet }));
   }
 
 }

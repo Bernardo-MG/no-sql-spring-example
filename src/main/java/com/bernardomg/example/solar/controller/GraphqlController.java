@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.example.solar.graphql.Query;
 
+import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 
@@ -59,7 +60,10 @@ public class GraphqlController {
 
     @PostMapping
     public ResponseEntity<Object> postPlanets(@RequestBody final Query query) {
-        final ExecutionResult execute = graphql.execute(query.getQuery());
+        final ExecutionInput executionInput = ExecutionInput.newExecutionInput()
+                .query(query.getQuery()).variables(query.getVariables())
+                .build();
+        final ExecutionResult execute = graphql.execute(executionInput);
         return new ResponseEntity<>(execute, HttpStatus.OK);
     }
 

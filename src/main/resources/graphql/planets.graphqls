@@ -3,7 +3,8 @@ schema {
 }
 
 type Query {
-   allPlanets: [Planet] 
+   allPlanets: [Planet]
+   planet(id: String): Planet
 }
 
 type Planet {
