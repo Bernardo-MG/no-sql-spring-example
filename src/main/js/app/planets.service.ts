@@ -57,7 +57,6 @@ export class PlanetsService {
   }
 
   getPlanet(planet: String): Observable<Planet> {
-    const id = planet.toString();
     return this.apollo
       .watchQuery({
         query: gql`
@@ -71,7 +70,7 @@ export class PlanetsService {
             }
           }
         `,
-        variables: { id }
+        variables: { id: planet }
       })
       .valueChanges.pipe(map((response: ApolloQueryResult<PlanetResponse>) => { return response.data.planet }));
   }
