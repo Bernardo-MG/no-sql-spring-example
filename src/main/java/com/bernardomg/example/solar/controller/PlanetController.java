@@ -66,20 +66,6 @@ public class PlanetController {
     }
 
     /**
-     * Returns all the planets.
-     * 
-     * @return all the planets
-     */
-    @GetMapping
-    public Response<Iterable<? extends Planet>> readPlanets() {
-        final Iterable<? extends Planet> result;
-
-        result = planetService.getPlanets();
-
-        return new DefaultResponse<>(result);
-    }
-
-    /**
      * Returns a single planet.
      * 
      * @param planet
@@ -92,6 +78,20 @@ public class PlanetController {
         final Planet result;
 
         result = planetService.getPlanet(planet);
+
+        return new DefaultResponse<>(result);
+    }
+
+    /**
+     * Returns all the planets.
+     * 
+     * @return all the planets
+     */
+    @GetMapping
+    public Response<Iterable<? extends Planet>> readPlanets() {
+        final Iterable<? extends Planet> result;
+
+        result = planetService.getPlanets();
 
         return new DefaultResponse<>(result);
     }

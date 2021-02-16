@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
 import com.bernardomg.example.solar.graphql.AllPlanetsDataFetcher;
+import com.bernardomg.example.solar.graphql.SinglePlanetDataFetcher;
 
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -25,12 +26,15 @@ import graphql.schema.idl.TypeDefinitionRegistry;
 public class GraphqlConfig {
 
     @Autowired
-    private AllPlanetsDataFetcher allPlanetsDataFetcher;
+    private AllPlanetsDataFetcher   allPlanetsDataFetcher;
 
-    private GraphQL               graphQL;
+    private GraphQL                 graphQL;
 
     @Value("classpath:graphql/planets.graphqls")
-    private Resource              resource;
+    private Resource                resource;
+
+    @Autowired
+    private SinglePlanetDataFetcher singlePlanetDataFetcher;
 
     public GraphqlConfig() {
         super();
@@ -53,9 +57,10 @@ public class GraphqlConfig {
     }
 
     private RuntimeWiring buildRuntimeWiring() {
-        return RuntimeWiring.newRuntimeWiring()
-                .type("Query", typeWiring -> typeWiring
-                        .dataFetcher("allPlanets", allPlanetsDataFetcher))
+        return RuntimeWiring.newRuntimeWiring().type("Query",
+                typeWiring -> typeWiring
+                        .dataFetcher("allPlanets", allPlanetsDataFetcher)
+                        .dataFetcher("planet", singlePlanetDataFetcher))
                 .build();
     }
 
