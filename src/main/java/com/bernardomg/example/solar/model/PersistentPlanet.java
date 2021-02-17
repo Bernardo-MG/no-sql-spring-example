@@ -14,21 +14,16 @@ import com.google.common.base.MoreObjects;
 @Node("Planet")
 public class PersistentPlanet implements Planet {
 
-    @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
-    private List<PersistentMoon> satellites = new ArrayList<>();
-
     @Id
     private String               name;
 
     private Long                 position;
 
+    @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
+    private List<PersistentMoon> satellites = new ArrayList<>();
+
     public PersistentPlanet() {
         super();
-    }
-
-    @Override
-    public List<PersistentMoon> getSatellites() {
-        return satellites;
     }
 
     @Override
@@ -41,8 +36,9 @@ public class PersistentPlanet implements Planet {
         return position;
     }
 
-    public void setSatellites(final List<PersistentMoon> satellites) {
-        this.satellites = satellites;
+    @Override
+    public List<PersistentMoon> getSatellites() {
+        return satellites;
     }
 
     public void setName(final String name) {
@@ -51,6 +47,10 @@ public class PersistentPlanet implements Planet {
 
     public void setPosition(final Long position) {
         this.position = position;
+    }
+
+    public void setSatellites(final List<PersistentMoon> satellites) {
+        this.satellites = satellites;
     }
 
     @Override

@@ -97,15 +97,15 @@ Just like running the project, an embedded server with an in-memory database can
 mvn verify -P development
 ```
 
-### Packaging the WAR
-
-When creating the WAR file the database connection credentials should be read from the environment:
+### Sample Query
 
 ```
-mvn package -P production
+{
+    allPlanets {
+        name
+    }
+}
 ```
-
-Check the documentation for more information.
 
 ## Collaborate
 

@@ -24,40 +24,47 @@
 
 package com.bernardomg.example.solar.controller;
 
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bernardomg.example.solar.graphql.Query;
+
+import graphql.ExecutionInput;
+import graphql.ExecutionResult;
+import graphql.GraphQL;
 
 /**
- * Controller for the home view.
+ * Rest controller for the example entities.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Controller
-@RequestMapping("/(?!static)**")
-public class HomeController {
+@RestController
+@RequestMapping("/api")
+public class GraphqlController {
 
-    /**
-     * Name for the welcome view.
-     */
-    private static final String VIEW_WELCOME = "index";
+    private GraphQL graphql;
 
-    /**
-     * Default constructor.
-     */
-    public HomeController() {
+    @Autowired
+    public GraphqlController(final GraphQL gql) {
         super();
+
+        graphql = checkNotNull(gql);
     }
 
-    /**
-     * Shows the welcome view.
-     * 
-     * @return the welcome view
-     */
-    @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
-    public String showWelcome() {
-        return VIEW_WELCOME;
+    @PostMapping
+    public ResponseEntity<Object> postPlanets(@RequestBody final Query query) {
+        final ExecutionInput executionInput = ExecutionInput.newExecutionInput()
+                .query(query.getQuery()).variables(query.getVariables())
+                .build();
+        final ExecutionResult execute = graphql.execute(executionInput);
+        return new ResponseEntity<>(execute, HttpStatus.OK);
     }
 
 }
