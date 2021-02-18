@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { ApolloTestingModule } from 'apollo-angular/testing';
 
 import { PlanetsService } from './planets.service';
 
@@ -8,7 +8,7 @@ describe('PlanetsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [ApolloTestingModule]
     });
     service = TestBed.inject(PlanetsService);
   });
