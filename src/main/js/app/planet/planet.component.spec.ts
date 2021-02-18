@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
+import { ApolloTestingModule } from 'apollo-angular/testing';
 
 import { PlanetComponent } from './planet.component';
 import { Planet } from 'app/planet';
@@ -23,16 +23,16 @@ describe('PlanetComponent', () => {
   let component: PlanetComponent;
   let fixture: ComponentFixture<PlanetComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [PlanetComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [RouterTestingModule, ApolloTestingModule],
       providers: [
         { provides: PlanetsService, useClass: MockedPlanetsService }
       ]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlanetComponent);

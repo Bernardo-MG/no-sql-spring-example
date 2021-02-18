@@ -298,7 +298,8 @@
       <classgraph.version>4.8.90</classgraph.version>
       <classmate.version>1.5.1</classmate.version>
       <commons.logging.version>1.2</commons.logging.version>
-      <glassfish.el>2.2</glassfish.el>
+      <glassfish.el.version>2.2</glassfish.el.version>
+      <graphql.version>11.0.0</graphql.version>
       <guava.version>29.0-jre</guava.version>
       <hamcrest.version>2.2</hamcrest.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
@@ -315,6 +316,7 @@
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.30</slf4j.version>
       <snakeyaml.version>1.27</snakeyaml.version>
+      <spring.boot.graphql.version>11.0.0</spring.boot.graphql.version>
       <spring.boot.neo4j.version>0.1.1</spring.boot.neo4j.version>
       <spring.boot.version>2.4.0</spring.boot.version>
       <spring.data.commons.version>2.4.2</spring.data.commons.version>
@@ -326,7 +328,7 @@
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.frontend.node.version>v14.15.4</plugin.frontend.node.version>
+      <plugin.frontend.node.version>v14.15.5</plugin.frontend.node.version>
       <plugin.frontend.npm.version>6.14.11</plugin.frontend.npm.version>
       <plugin.frontend.version>1.10.0</plugin.frontend.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
@@ -487,6 +489,12 @@
          <artifactId>neo4j-migrations-spring-boot-starter</artifactId>
          <version>${spring.boot.neo4j.version}</version>
       </dependency>
+      <dependency>
+         <!-- Spring Boot Starter: GraphQL -->
+         <groupId>com.graphql-java-kickstart</groupId>
+         <artifactId>graphql-spring-boot-starter</artifactId>
+         <version>${spring.boot.graphql.version}</version>
+      </dependency>
       <!-- ============================================== -->
       <!-- ================= ASPECTJ ==================== -->
       <!-- ============================================== -->
@@ -502,6 +510,15 @@
          <artifactId>aspectjweaver</artifactId>
          <version>${aspectj.version}</version>
          <scope>runtime</scope>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ================= GRAPHQL ==================== -->
+      <!-- ============================================== -->
+      <!-- https://mvnrepository.com/artifact/com.graphql-java-kickstart/graphql-java-tools -->
+      <dependency>
+         <groupId>com.graphql-java-kickstart</groupId>
+         <artifactId>graphql-java-tools</artifactId>
+         <version>${graphql.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================ SNAKEYAML =================== -->
@@ -608,7 +625,7 @@
          <!-- Javax EL implementation -->
          <groupId>org.glassfish.web</groupId>
          <artifactId>el-impl</artifactId>
-         <version>${glassfish.el}</version>
+         <version>${glassfish.el.version}</version>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->

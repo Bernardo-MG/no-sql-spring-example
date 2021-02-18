@@ -1,16 +1,6 @@
-# Spring MVC Project
+# No-SQL with Spring Example
 
-This is a [Spring MVC](https://spring.io) project using [React](https://reactjs.org/) templates for the frontend, created with the use of the [Spring MVC with React Maven Archetype](https://github.com/Bernardo-MG/spring-mvc-react-maven-archetype). It will ease the development of new Spring MVC projects, setting it up for CI through the use of three free services: [Github](https://github.com/), [Github Workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows) and [Bintray](https://bintray.com/).
-
-Before beginning with the new project there are a few things which should be edited:
-
-- This readme's description has to be adapted to the new project.
-- Project info on the POM should be checked.
-- The various links on the readme, POM and Maven site (for repositories, issues, etc) should be verified.
-- The documentation on the project's [Maven Site](https://maven.apache.org/plugins/maven-site-plugin/) has to be written.
-- The license, if not using the MIT one, should be changed. Remember that this is referenced on the POM, readme and LICENSE files.
-
-Note that the Maven site is using the [Docs Maven Skin](https://github.com/Bernardo-MG/docs-maven-skin), which will have a few configuration requirements of its own.
+Spring MVC application making use of a Neo4j database. The data is read from a GraphQL endpoint and displayed in an Angular frontend, with the help of Angular and d3. The dataset consist on the solar planet.
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -20,18 +10,14 @@ Note that the Maven site is using the [Docs Maven Skin](https://github.com/Berna
 
 ## Features
 
-The project by default comes with a useful series of features:
+Several technologies are combined to make this work:
 
-- Preconfigured POM to begin developing a new [Spring MVC](https://spring.io) project with [Spring Boot}(https://spring.io/projects/spring-boot).
-- Initial sample project including working persistence and exception handling
-- Integration with [Thymeleaf](http://www.thymeleaf.org/) for the view templates.
-- Using [React](https://reactjs.org/) for the UI.
-- Using [Liquibase](http://www.liquibase.org/) for database versioning.
-- Integration with [iText](https://itextpdf.com/) for generating PDFs.
-- Prepared for [Github Workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows), including configuration files and deployment scripts. Check the [Archetype documentation](http://docs.bernardomg.com/maven/library-maven-archetype) to find out more.
-- Unit and integration tests suites ready to be run with [JUnit](http://junit.org) just by using the Maven test and verify commands.
-- A Maven site, using the [Docs Maven Skin](https://github.com/Bernardo-MG/docs-maven-skin), to contain the documentation, the Javadocs and several reports.
-- A bunch of useful files, such as readme, gitignore and gitattributes.
+- [Spring MVC](https://spring.io/)
+- [Neo4j](https://neo4j.com/)
+- [GraphQL](https://graphql.org/) endpoint
+- [Angular](https://angular.io/)
+- [Apollo GraphQL](https://www.apollographql.com/)
+- [d3](https://d3js.org/)
 
 ## Documentation
 
@@ -57,13 +43,6 @@ The verify phase is required, otherwise some of the reports won't be generated.
 
 The application is coded in Java, using Maven to manage the project.
 
-### Prerequisites
-
-The project has been tested on the following Java versions:
-* JDK 8
-
-All other dependencies are handled through Maven, and noted in the included POM file.
-
 ### Profiles
 
 Maven profiles are included for setting up the database.
@@ -73,9 +52,11 @@ Maven profiles are included for setting up the database.
 | development | Development settings     |
 | production  | Production settings      |
 
-### Installing
+### Database
 
-The project can be installed by creating the war file and deploying it into a server.
+Before running, start a local Neo4j database. This will be populated with the dataset.
+
+The database should accept the username neo4j with password secret.
 
 ### Running
 
@@ -96,16 +77,6 @@ Just like running the project, an embedded server with an in-memory database can
 ```
 mvn verify -P development
 ```
-
-### Packaging the WAR
-
-When creating the WAR file the database connection credentials should be read from the environment:
-
-```
-mvn package -P production
-```
-
-Check the documentation for more information.
 
 ## Collaborate
 
