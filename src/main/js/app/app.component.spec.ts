@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'solar-system-d3-spring-example'`, () => {
+  it(`should have as title 'no-sql-spring-example'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('solar-system-d3-spring-example');
+    expect(app.title).toEqual('no-sql-spring-example');
   });
 
   // it('should render title', () => {
   //   const fixture = TestBed.createComponent(AppComponent);
   //   fixture.detectChanges();
   //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('.content span').textContent).toContain('solar-system-d3-spring-example app is running!');
+  //   expect(compiled.querySelector('.content span').textContent).toContain('no-sql-spring-example app is running!');
   // });
 });

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "solar-system-d3-spring-example": {
+    "no-sql-spring-example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "solar-system-d3-spring-example:build"
+            "browserTarget": "no-sql-spring-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "solar-system-d3-spring-example:build:production"
+              "browserTarget": "no-sql-spring-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "solar-system-d3-spring-example:build"
+            "browserTarget": "no-sql-spring-example:build"
           }
         },
         "test": {
@@ -98,7 +98,7 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "solar-system-d3-spring-example:serve:production"
+              "devServerTarget": "no-sql-spring-example:serve:production"
             },
             "ci": {
               "watch": false,
@@ -124,14 +124,14 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "src/main/js/e2e/protractor.conf.js",
-            "devServerTarget": "solar-system-d3-spring-example:serve"
+            "devServerTarget": "no-sql-spring-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "solar-system-d3-spring-example:serve:production"
+              "devServerTarget": "no-sql-spring-example:serve:production"
             },
             "ci": {
-              "devServerTarget": "solar-system-d3-spring-example:serve:production",
+              "devServerTarget": "no-sql-spring-example:serve:production",
               "protractorConfig": "src/main/js/e2e/protractor-ci.conf.js"
             }
           }
@@ -139,5 +139,5 @@
       }
     }
   },
-  "defaultProject": "solar-system-d3-spring-example"
+  "defaultProject": "no-sql-spring-example"
 }

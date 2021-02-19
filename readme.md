@@ -97,10 +97,10 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[issues]: https://github.com/bernardo-mg/solar-system-d3-spring-example/issues
-[javadoc-develop]: https://docs.bernardomg.com/development/maven/solar-system-d3-spring-example/apidocs
-[javadoc-release]: https://docs.bernardomg.com/maven/solar-system-d3-spring-example/apidocs
+[issues]: https://github.com/bernardo-mg/no-sql-spring-example/issues
+[javadoc-develop]: https://docs.bernardomg.com/development/maven/no-sql-spring-example/apidocs
+[javadoc-release]: https://docs.bernardomg.com/maven/no-sql-spring-example/apidocs
 [license]: https://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/bernardo-mg/solar-system-d3-spring-example
-[site-develop]: https://docs.bernardomg.com/development/maven/solar-system-d3-spring-example
-[site-release]: https://docs.bernardomg.com/maven/solar-system-d3-spring-example
+[scm]: https://github.com/bernardo-mg/no-sql-spring-example
+[site-develop]: https://docs.bernardomg.com/development/maven/no-sql-spring-example
+[site-release]: https://docs.bernardomg.com/maven/no-sql-spring-example

@@ -19,13 +19,13 @@
    <!-- ********************************************** -->
 
    <groupId>com.bernardomg.example</groupId>
-   <artifactId>solar-system-d3-spring-example</artifactId>
+   <artifactId>no-sql-spring-example</artifactId>
    <version>0.0.1-SNAPSHOT</version>
    <packaging>war</packaging>
 
    <name>Spring MVC Project</name>
    <description>Example combining Spring, Angular and d3</description>
-   <url>https://github.com/bernardo-mg/solar-system-d3-spring-example</url>
+   <url>https://github.com/bernardo-mg/no-sql-spring-example</url>
    <inceptionYear>2021</inceptionYear>
 
    <licenses>
@@ -41,20 +41,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/solar-system-d3-spring-example.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/solar-system-d3-spring-example.git</developerConnection>
+      <connection>scm:git:https://github.com/bernardo-mg/no-sql-spring-example.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/no-sql-spring-example.git</developerConnection>
       <tag>head</tag>
-      <url>https://www.github.com/bernardo-mg/solar-system-d3-spring-example</url>
+      <url>https://www.github.com/bernardo-mg/no-sql-spring-example</url>
    </scm>
 
    <issueManagement>
       <system>GitHub</system>
-      <url>https://www.github.com/bernardo-mg/solar-system-d3-spring-example/issues</url>
+      <url>https://www.github.com/bernardo-mg/no-sql-spring-example/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>Github</system>
-      <url>https://www.github.com/bernardo-mg/solar-system-d3-spring-example/actions</url>
+      <url>https://www.github.com/bernardo-mg/no-sql-spring-example/actions</url>
       <notifiers />
    </ciManagement>
 
@@ -63,7 +63,7 @@
          <uniqueVersion>false</uniqueVersion>
          <id>releases</id>
          <name>Releases Repository</name>
-         <url>https://api.bintray.com/maven/bernardo-mg/maven/solar-system-d3-spring-example</url>
+         <url>https://api.bintray.com/maven/bernardo-mg/maven/no-sql-spring-example</url>
       </repository>
       <snapshotRepository>
          <uniqueVersion>false</uniqueVersion>

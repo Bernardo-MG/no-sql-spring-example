@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'solar-system-d3-spring-example';
+  title = 'no-sql-spring-example';
 }
