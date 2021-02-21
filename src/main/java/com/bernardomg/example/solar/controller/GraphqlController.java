@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.example.solar.graphql.Query;
+import com.bernardomg.example.solar.graphql.DefaultQuery;
 import com.bernardomg.example.solar.service.GraphqlService;
 
 import graphql.ExecutionResult;
@@ -75,7 +75,7 @@ public class GraphqlController {
      */
     @PostMapping
     public ResponseEntity<ExecutionResult>
-            execute(@RequestBody final Query query) {
+            execute(@RequestBody final DefaultQuery query) {
         final ExecutionResult execution;
 
         execution = service.execute(query.getQuery(), query.getVariables());
