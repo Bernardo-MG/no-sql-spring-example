@@ -64,13 +64,13 @@ public class DefaultQuery implements Query {
     }
 
     @Override
-    public void setQuery(final String query) {
-        this.query = query;
+    public void setQuery(final String value) {
+        this.query = value;
     }
 
     @Override
-    public void setVariables(final Map<String, Object> variables) {
-        this.variables = variables;
+    public void setVariables(final Map<String, Object> value) {
+        this.variables = value;
     }
 
     @Override
