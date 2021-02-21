@@ -36,7 +36,7 @@ import graphql.ExecutionResult;
 import graphql.GraphQL;
 
 @Service
-public class DefaultGraphqlService implements GraphqlService {
+public final class DefaultGraphqlService implements GraphqlService {
 
     /**
      * GraphQL executor.
@@ -57,7 +57,7 @@ public class DefaultGraphqlService implements GraphqlService {
     }
 
     @Override
-    public ExecutionResult execute(final String query,
+    public final ExecutionResult execute(final String query,
             final Map<String, Object> variables) {
         final ExecutionInput executionInput;
 
