@@ -27,8 +27,6 @@ package com.bernardomg.example.solar.config;
 import java.io.File;
 import java.io.IOException;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -61,11 +59,6 @@ public class GraphqlConfig {
     private AllPlanetsDataFetcher   allPlanetsDataFetcher;
 
     /**
-     * GraphQL executor.
-     */
-    private GraphQL                 graphQL;
-
-    /**
      * GraphQL definitions.
      */
     @Value("classpath:graphql/planets.graphqls")
@@ -82,19 +75,18 @@ public class GraphqlConfig {
     }
 
     @Bean
-    public GraphQL graphQL() {
-        return graphQL;
-    }
+    public GraphQL graphQL() throws IOException {
+        final File file;
+        final TypeDefinitionRegistry typeDefinitionRegistry;
+        final RuntimeWiring runtimeWiring;
+        final GraphQLSchema graphQLSchema;
 
-    @PostConstruct
-    public void init() throws IOException {
-        final File file = definitions.getFile();
-        final TypeDefinitionRegistry typeDefinitionRegistry = new SchemaParser()
-                .parse(file);
-        final RuntimeWiring runtimeWiring = buildRuntimeWiring();
-        final GraphQLSchema graphQLSchema = new SchemaGenerator()
+        file = definitions.getFile();
+        typeDefinitionRegistry = new SchemaParser().parse(file);
+        runtimeWiring = buildRuntimeWiring();
+        graphQLSchema = new SchemaGenerator()
                 .makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
-        this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+        return GraphQL.newGraphQL(graphQLSchema).build();
     }
 
     private RuntimeWiring buildRuntimeWiring() {
