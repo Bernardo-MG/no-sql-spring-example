@@ -22,35 +22,48 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.solar.model;
+package com.bernardomg.example.solar.service;
 
-/**
- * Solar system planet.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-public interface Planet {
+import static com.google.common.base.Preconditions.checkNotNull;
 
-    /**
-     * Returns the name.
-     * 
-     * @return the name
-     */
-    public String getName();
+import java.util.Map;
 
-    /**
-     * Returns the position in the solar system.
-     * 
-     * @return the position
-     */
-    public Long getPosition();
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import graphql.ExecutionInput;
+import graphql.ExecutionResult;
+import graphql.GraphQL;
+
+@Service
+public final class DefaultGraphqlService implements GraphqlService {
 
     /**
-     * Returns the planet satellites.
-     * 
-     * @return the planet satellites
+     * GraphQL executor.
      */
-    public Iterable<? extends Moon> getSatellites();
+    private final GraphQL graphql;
+
+    /**
+     * Constructs a service with the received executor.
+     * 
+     * @param gql
+     *            GraphQL executor
+     */
+    @Autowired
+    public DefaultGraphqlService(final GraphQL gql) {
+        super();
+
+        graphql = checkNotNull(gql);
+    }
+
+    @Override
+    public final ExecutionResult execute(final String query,
+            final Map<String, Object> variables) {
+        final ExecutionInput executionInput;
+
+        executionInput = ExecutionInput.newExecutionInput().query(query)
+                .variables(variables).build();
+        return graphql.execute(executionInput);
+    }
 
 }

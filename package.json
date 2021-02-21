@@ -1,19 +1,19 @@
 {
-   "name": "solar-system-d3-spring-example",
+   "name": "no-sql-spring-example",
    "version": "0.0.1-SNAPSHOT",
    "description": "Example combining Spring, Angular and d3",
    "author": "Bernardo Martínez Garrido",
-   "homepage": "https://github.com/bernardo-mg/solar-system-d3-spring-example",
+   "homepage": "https://github.com/bernardo-mg/no-sql-spring-example",
    "license": "MIT",
    "keywords": [
       "keywords"
    ],
    "repository": {
       "type": "git",
-      "url": "git@github.com:bernardo-mg/solar-system-d3-spring-example.git"
+      "url": "git@github.com:bernardo-mg/no-sql-spring-example.git"
    },
    "bugs": {
-      "url": "https://www.github.com/bernardo-mg/solar-system-d3-spring-example/issues"
+      "url": "https://www.github.com/bernardo-mg/no-sql-spring-example/issues"
    },
    "scripts": {
       "ng": "ng",

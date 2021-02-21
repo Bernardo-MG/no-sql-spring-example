@@ -21,36 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.bernardomg.example.solar.model;
-
 /**
- * Solar system planet.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Repositories.
  */
-public interface Planet {
 
-    /**
-     * Returns the name.
-     * 
-     * @return the name
-     */
-    public String getName();
-
-    /**
-     * Returns the position in the solar system.
-     * 
-     * @return the position
-     */
-    public Long getPosition();
-
-    /**
-     * Returns the planet satellites.
-     * 
-     * @return the planet satellites
-     */
-    public Iterable<? extends Moon> getSatellites();
-
-}
+package com.bernardomg.example.solar.repository;

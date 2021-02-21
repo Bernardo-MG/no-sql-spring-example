@@ -17,12 +17,23 @@ export class SolarSystemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Creates the SVG view
     var view = d3.select("figure#main_graphic")
       .append("svg")
       .attr("id", "solar_system")
       .attr("class", "full_size")
       .append("g");
 
+    // Prepares definitions
+    this.initializeDefinitions();
+
+    this.planetsService.getPlanets().subscribe(planets => this.displaySystem(view, planets));
+  }
+
+  /**
+   * Sets the definitions needed to show the planets.
+   */
+  initializeDefinitions() {
     var svgDefs = d3.select("#solar_system").append('defs');
 
     var mainGradient = svgDefs.append('radialGradient')
@@ -35,11 +46,15 @@ export class SolarSystemComponent implements OnInit {
     mainGradient.append('stop')
       .attr('class', 'stop-right')
       .attr('offset', '1');
-
-    this.planetsService.getPlanets().subscribe(planets => this.display(view, planets));
   }
 
-  display(view, planets: Planet[]) {
+  /**
+   * Draws the solar system in the view..
+   * 
+   * @param {*} view where the image will be drawn
+   * @param planets planets to draw
+   */
+  displaySystem(view, planets: Planet[]) {
     var mainView = d3.select("svg#solar_system");
     var node = mainView.node();
     var width = (node as HTMLElement).clientWidth;
@@ -59,7 +74,7 @@ export class SolarSystemComponent implements OnInit {
    * Draws the sun in the view.
    * 
    * @param {*} view where the image will be drawn
-   * @param {*} width view width
+   * @param {*} radius sun radius
    */
   private displaySun(view, radius) {
     var arcGen = d3.arc()
@@ -106,9 +121,9 @@ export class SolarSystemComponent implements OnInit {
 
     // Graticule
     var path = this.getPath(planetRadius);
-
     var graticule = this.getGraticule(planetRadius);
 
+    // Required to identify planets when clicking on them
     const index = d3.local();
 
     planetsView.append("path")

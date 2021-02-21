@@ -45,11 +45,12 @@ export class PlanetComponent implements OnInit {
   /**
    * Displays the planet.
    * 
-   * @param {*} x x axis position
-   * @param {*} y y axis position
-   * @param {*} width view width
+   * @param {*} view where the image will be drawn
+   * @param {*} width max width
+   * @param {*} height max height
+   * @param {*} planet planet to display
    */
-  private displayPlanet(view, width, height, data) {
+  private displayPlanet(view, width, height, planet) {
     var planetRadius = Math.min(width, height) / 10;
 
     var boundingArea = view.append("g")
@@ -64,7 +65,7 @@ export class PlanetComponent implements OnInit {
 
     planetView.append("path")
       .attr("class", "graticule")
-      .on("mouseover", (d) => this.handleShowName(data.name))
+      .on("mouseover", (d) => this.handleShowName(planet.name))
       .on("mouseout", this.handleHideName)
       .datum(graticule)
       .attr("transform", "translate(" + [(width / 2) - planetRadius, (height / 2)] + ")")
@@ -72,7 +73,7 @@ export class PlanetComponent implements OnInit {
 
     // Satellite orbit
     planetView.selectAll("g")
-      .data(data.satellites).enter()
+      .data(planet.satellites).enter()
       .append("circle")
       .attr("class", "orbit")
       .attr("transform", "translate(" + [(width / 2), (height / 2)] + ")")
@@ -80,7 +81,7 @@ export class PlanetComponent implements OnInit {
 
     // Satellite point
     planetView.selectAll("g")
-      .data(data.satellites).enter()
+      .data(planet.satellites).enter()
       .append("circle")
       .attr("id", (d) => "satellite_" + d.name)
       .on("mouseover", (d) => this.handleShowName(d.name))

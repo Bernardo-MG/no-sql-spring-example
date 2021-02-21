@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   // it('should display welcome message', () => {
   //   page.navigateTo();
-  //   expect(page.getTitleText()).toEqual('solar-system-d3-spring-example app is running!');
+  //   expect(page.getTitleText()).toEqual('no-sql-spring-example app is running!');
   // });
 
   afterEach(async () => {

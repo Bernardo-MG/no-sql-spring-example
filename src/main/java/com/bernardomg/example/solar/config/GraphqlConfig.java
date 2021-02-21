@@ -1,10 +1,31 @@
+/**
+ * The MIT License (MIT)
+ * <p>
+ * Copyright (c) 2021 the original author or authors.
+ * <p>
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * <p>
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * <p>
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 package com.bernardomg.example.solar.config;
 
 import java.io.File;
 import java.io.IOException;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,17 +43,30 @@ import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 
+/**
+ * GraphQL configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 public class GraphqlConfig {
 
+    /**
+     * All planets fetcher.
+     */
     @Autowired
     private AllPlanetsDataFetcher   allPlanetsDataFetcher;
 
-    private GraphQL                 graphQL;
-
+    /**
+     * GraphQL definitions.
+     */
     @Value("classpath:graphql/planets.graphqls")
-    private Resource                resource;
+    private Resource                definitions;
 
+    /**
+     * Single planet fetcher.
+     */
     @Autowired
     private SinglePlanetDataFetcher singlePlanetDataFetcher;
 
@@ -41,19 +75,18 @@ public class GraphqlConfig {
     }
 
     @Bean
-    public GraphQL graphQL() {
-        return graphQL;
-    }
+    public GraphQL graphQL() throws IOException {
+        final File file;
+        final TypeDefinitionRegistry typeDefinitionRegistry;
+        final RuntimeWiring runtimeWiring;
+        final GraphQLSchema graphQLSchema;
 
-    @PostConstruct
-    public void init() throws IOException {
-        final File file = resource.getFile();
-        final TypeDefinitionRegistry typeDefinitionRegistry = new SchemaParser()
-                .parse(file);
-        final RuntimeWiring runtimeWiring = buildRuntimeWiring();
-        final GraphQLSchema graphQLSchema = new SchemaGenerator()
+        file = definitions.getFile();
+        typeDefinitionRegistry = new SchemaParser().parse(file);
+        runtimeWiring = buildRuntimeWiring();
+        graphQLSchema = new SchemaGenerator()
                 .makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
-        this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+        return GraphQL.newGraphQL(graphQLSchema).build();
     }
 
     private RuntimeWiring buildRuntimeWiring() {

@@ -34,14 +34,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.example.solar.graphql.Query;
+import com.bernardomg.example.solar.request.DefaultQuery;
+import com.bernardomg.example.solar.service.GraphqlService;
 
-import graphql.ExecutionInput;
 import graphql.ExecutionResult;
-import graphql.GraphQL;
 
 /**
- * Rest controller for the example entities.
+ * GraphQL controller. Serves as an access point for GraphQL queries.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -49,22 +48,38 @@ import graphql.GraphQL;
 @RequestMapping("/api")
 public class GraphqlController {
 
-    private GraphQL graphql;
+    /**
+     * GraphQL service.
+     */
+    private final GraphqlService service;
 
+    /**
+     * Constructs a controller with the received service.
+     * 
+     * @param graphqlService
+     *            GraphQL service
+     */
     @Autowired
-    public GraphqlController(final GraphQL gql) {
+    public GraphqlController(final GraphqlService graphqlService) {
         super();
 
-        graphql = checkNotNull(gql);
+        service = checkNotNull(graphqlService);
     }
 
+    /**
+     * Executes a GraphQL query.
+     * 
+     * @param query
+     *            query to execute
+     * @return the result from executing the query
+     */
     @PostMapping
-    public ResponseEntity<Object> postPlanets(@RequestBody final Query query) {
-        final ExecutionInput executionInput = ExecutionInput.newExecutionInput()
-                .query(query.getQuery()).variables(query.getVariables())
-                .build();
-        final ExecutionResult execute = graphql.execute(executionInput);
-        return new ResponseEntity<>(execute, HttpStatus.OK);
+    public ResponseEntity<ExecutionResult>
+            execute(@RequestBody final DefaultQuery query) {
+        final ExecutionResult execution;
+
+        execution = service.execute(query.getQuery(), query.getVariables());
+        return new ResponseEntity<>(execution, HttpStatus.OK);
     }
 
 }

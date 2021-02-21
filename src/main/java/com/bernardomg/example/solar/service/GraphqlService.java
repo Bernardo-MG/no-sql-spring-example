@@ -22,35 +22,30 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.solar.model;
+package com.bernardomg.example.solar.service;
+
+import java.util.Map;
+
+import graphql.ExecutionResult;
 
 /**
- * Solar system planet.
+ * Service for GraphQL operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface Planet {
+public interface GraphqlService {
 
     /**
-     * Returns the name.
+     * Executes a GraphQL query.
      * 
-     * @return the name
+     * @param query
+     *            query to execute
+     * @param variables
+     *            variables for the query
+     * @return query result
      */
-    public String getName();
-
-    /**
-     * Returns the position in the solar system.
-     * 
-     * @return the position
-     */
-    public Long getPosition();
-
-    /**
-     * Returns the planet satellites.
-     * 
-     * @return the planet satellites
-     */
-    public Iterable<? extends Moon> getSatellites();
+    public ExecutionResult execute(final String query,
+            final Map<String, Object> variables);
 
 }

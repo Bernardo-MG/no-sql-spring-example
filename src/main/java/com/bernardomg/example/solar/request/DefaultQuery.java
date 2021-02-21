@@ -22,35 +22,61 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.solar.model;
+package com.bernardomg.example.solar.request;
+
+import java.util.Map;
+
+import com.google.common.base.MoreObjects;
 
 /**
- * Solar system planet.
+ * Default implementation of the query DTO.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface Planet {
+public class DefaultQuery implements Query {
 
     /**
-     * Returns the name.
-     * 
-     * @return the name
+     * GraphQL query.
      */
-    public String getName();
+    private String              query;
 
     /**
-     * Returns the position in the solar system.
-     * 
-     * @return the position
+     * Query variables.
      */
-    public Long getPosition();
+    private Map<String, Object> variables;
 
     /**
-     * Returns the planet satellites.
-     * 
-     * @return the planet satellites
+     * Default constructor.
      */
-    public Iterable<? extends Moon> getSatellites();
+    public DefaultQuery() {
+        super();
+    }
+
+    @Override
+    public String getQuery() {
+        return query;
+    }
+
+    @Override
+    public Map<String, Object> getVariables() {
+        return variables;
+    }
+
+    @Override
+    public void setQuery(final String value) {
+        this.query = value;
+    }
+
+    @Override
+    public void setVariables(final Map<String, Object> value) {
+        this.variables = value;
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("query", query)
+                .add("variables", variables).toString();
+    }
 
 }
