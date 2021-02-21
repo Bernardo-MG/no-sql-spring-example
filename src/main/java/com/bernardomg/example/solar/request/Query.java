@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.solar.graphql;
+package com.bernardomg.example.solar.request;
 
 import java.util.Map;
 

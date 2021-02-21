@@ -21,62 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * GraphQL classes.
+ */
 
 package com.bernardomg.example.solar.graphql;
-
-import java.util.Map;
-
-import com.google.common.base.MoreObjects;
-
-/**
- * Default implementation of the query DTO.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-public class DefaultQuery implements Query {
-
-    /**
-     * GraphQL query.
-     */
-    private String              query;
-
-    /**
-     * Query variables.
-     */
-    private Map<String, Object> variables;
-
-    /**
-     * Default constructor.
-     */
-    public DefaultQuery() {
-        super();
-    }
-
-    @Override
-    public String getQuery() {
-        return query;
-    }
-
-    @Override
-    public Map<String, Object> getVariables() {
-        return variables;
-    }
-
-    @Override
-    public void setQuery(final String query) {
-        this.query = query;
-    }
-
-    @Override
-    public void setVariables(final Map<String, Object> variables) {
-        this.variables = variables;
-    }
-
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("query", query)
-                .add("variables", variables).toString();
-    }
-
-}
