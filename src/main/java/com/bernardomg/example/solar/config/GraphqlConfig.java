@@ -22,17 +22,35 @@ import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 
+/**
+ * GraphQL configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 public class GraphqlConfig {
 
+    /**
+     * All planets fetcher.
+     */
     @Autowired
     private AllPlanetsDataFetcher   allPlanetsDataFetcher;
 
+    /**
+     * GraphQL executor.
+     */
     private GraphQL                 graphQL;
 
+    /**
+     * GraphQL definitions.
+     */
     @Value("classpath:graphql/planets.graphqls")
-    private Resource                resource;
+    private Resource                definitions;
 
+    /**
+     * Single planet fetcher.
+     */
     @Autowired
     private SinglePlanetDataFetcher singlePlanetDataFetcher;
 
@@ -47,7 +65,7 @@ public class GraphqlConfig {
 
     @PostConstruct
     public void init() throws IOException {
-        final File file = resource.getFile();
+        final File file = definitions.getFile();
         final TypeDefinitionRegistry typeDefinitionRegistry = new SchemaParser()
                 .parse(file);
         final RuntimeWiring runtimeWiring = buildRuntimeWiring();
