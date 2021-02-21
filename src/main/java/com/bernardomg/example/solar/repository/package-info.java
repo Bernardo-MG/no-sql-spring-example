@@ -21,41 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.bernardomg.example.solar.model;
-
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-
 /**
- * Persistent moon. Prepared for Neo4j.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Repositories.
  */
-@Node("Moon")
-public class PersistentMoon implements Moon {
 
-    /**
-     * Name.
-     */
-    @Id
-    private String name;
-
-    /**
-     * Default constructor.
-     */
-    public PersistentMoon() {
-        super();
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String value) {
-        this.name = value;
-    }
-
-}
+package com.bernardomg.example.solar.repository;

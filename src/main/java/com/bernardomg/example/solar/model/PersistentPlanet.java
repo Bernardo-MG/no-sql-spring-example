@@ -43,11 +43,20 @@ import com.google.common.base.MoreObjects;
 @Node("Planet")
 public class PersistentPlanet implements Planet {
 
+    /**
+     * Planet name.
+     */
     @Id
     private String               name;
 
+    /**
+     * Planet position.
+     */
     private Long                 position;
 
+    /**
+     * Planet satellites.
+     */
     @Relationship(type = "SATELLITE", direction = Direction.OUTGOING)
     private List<PersistentMoon> satellites = new ArrayList<>();
 
@@ -70,16 +79,34 @@ public class PersistentPlanet implements Planet {
         return satellites;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    /**
+     * Sets the name.
+     * 
+     * @param value
+     *            the name
+     */
+    public void setName(final String value) {
+        this.name = value;
     }
 
-    public void setPosition(final Long position) {
-        this.position = position;
+    /**
+     * Sets the position.
+     * 
+     * @param value
+     *            the position
+     */
+    public void setPosition(final Long value) {
+        this.position = value;
     }
 
-    public void setSatellites(final List<PersistentMoon> satellites) {
-        this.satellites = satellites;
+    /**
+     * Sets the satellites.
+     * 
+     * @param value
+     *            the satellites
+     */
+    public void setSatellites(final List<PersistentMoon> value) {
+        this.satellites = value;
     }
 
     @Override
