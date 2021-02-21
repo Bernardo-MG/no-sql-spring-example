@@ -33,9 +33,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Web configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
+    /**
+     * Default constructor.
+     */
     public WebConfiguration() {
         super();
     }

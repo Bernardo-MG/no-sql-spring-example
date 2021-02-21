@@ -38,15 +38,30 @@ import com.bernardomg.example.solar.repository.PlanetRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 
+/**
+ * Fetcher for the single planet query.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Component
 public final class SinglePlanetDataFetcher implements DataFetcher<Planet> {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(SinglePlanetDataFetcher.class);
 
+    /**
+     * Planets repository.
+     */
     @Autowired
     private PlanetRepository    planetRepository;
 
+    /**
+     * Default constructor.
+     */
     public SinglePlanetDataFetcher() {
         super();
     }

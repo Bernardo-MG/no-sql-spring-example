@@ -35,13 +35,25 @@ import com.bernardomg.example.solar.repository.PlanetRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 
+/**
+ * Fetcher for the all planets query.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Component
 public final class AllPlanetsDataFetcher
         implements DataFetcher<List<? extends Planet>> {
 
+    /**
+     * Planets repository.
+     */
     @Autowired
     private PlanetRepository planetRepository;
 
+    /**
+     * Default constructor.
+     */
     public AllPlanetsDataFetcher() {
         super();
     }

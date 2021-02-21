@@ -27,10 +27,19 @@ package com.bernardomg.example.solar.config;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Cache configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 @EnableCaching
 public class CacheConfig {
 
+    /**
+     * Default constructor.
+     */
     public CacheConfig() {
         super();
     }

@@ -27,12 +27,24 @@ package com.bernardomg.example.solar.model;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 
+/**
+ * Persistent moon. Prepared for Neo4j.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Node("Moon")
 public class PersistentMoon implements Moon {
 
+    /**
+     * Name.
+     */
     @Id
     private String name;
 
+    /**
+     * Default constructor.
+     */
     public PersistentMoon() {
         super();
     }

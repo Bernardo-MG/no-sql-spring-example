@@ -27,10 +27,19 @@ package com.bernardomg.example.solar.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * Persistence configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 public class PersistenceConfig {
 
+    /**
+     * Default constructor.
+     */
     public PersistenceConfig() {
         super();
     }

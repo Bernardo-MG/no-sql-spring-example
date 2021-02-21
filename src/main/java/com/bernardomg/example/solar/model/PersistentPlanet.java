@@ -34,6 +34,12 @@ import org.springframework.data.neo4j.core.schema.Relationship.Direction;
 
 import com.google.common.base.MoreObjects;
 
+/**
+ * Persistent planet. Prepared for Neo4j.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Node("Planet")
 public class PersistentPlanet implements Planet {
 

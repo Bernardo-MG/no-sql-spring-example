@@ -27,10 +27,19 @@ package com.bernardomg.example.solar.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+ * Aspect configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Configuration
 @EnableAspectJAutoProxy
 public class AspectConfig {
 
+    /**
+     * Default constructor.
+     */
     public AspectConfig() {
         super();
     }

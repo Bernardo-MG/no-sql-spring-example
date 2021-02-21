@@ -24,8 +24,19 @@
 
 package com.bernardomg.example.solar.model;
 
+/**
+ * Planet moon.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public interface Moon {
 
+    /**
+     * Returns the name.
+     * 
+     * @return the name
+     */
     public String getName();
 
 }
