@@ -51,7 +51,7 @@ public class GraphqlController {
     /**
      * GraphQL service.
      */
-    private GraphqlService service;
+    private final GraphqlService service;
 
     /**
      * Constructs a controller with the received service.

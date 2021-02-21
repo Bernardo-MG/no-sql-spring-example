@@ -37,7 +37,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.bernardomg.example.solar.controller.GlobalExceptionHandler;
 import com.bernardomg.example.solar.response.DefaultResponse;
 import com.bernardomg.example.solar.response.Response;
 import com.bernardomg.example.solar.response.ResponseStatus;

@@ -41,7 +41,7 @@ public class DefaultGraphqlService implements GraphqlService {
     /**
      * GraphQL executor.
      */
-    private GraphQL graphql;
+    private final GraphQL graphql;
 
     /**
      * Constructs a service with the received executor.
