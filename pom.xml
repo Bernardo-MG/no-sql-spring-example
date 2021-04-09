@@ -310,7 +310,7 @@
       <log4j.version>2.13.3</log4j.version>
       <mockito.version>3.7.0</mockito.version>
       <servlet.version>4.0.1</servlet.version>
-      <slf4j.version>1.7.30</slf4j.version>
+      <slf4j.version>2.0.0-alpha1</slf4j.version>
       <spring.boot.graphql.version>11.0.0</spring.boot.graphql.version>
       <spring.boot.neo4j.version>0.1.1</spring.boot.neo4j.version>
       <spring.boot.version>2.4.0</spring.boot.version>
@@ -550,7 +550,7 @@
       <dependency>
          <!-- Log4j SLF4J Bridge -->
          <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-slf4j-impl</artifactId>
+         <artifactId>log4j-slf4j18-impl</artifactId>
          <version>${log4j.version}</version>
       </dependency>
       <dependency>
