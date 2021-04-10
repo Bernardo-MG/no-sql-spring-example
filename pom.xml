@@ -612,16 +612,6 @@
          <artifactId>classgraph</artifactId>
          <version>${classgraph.version}</version>
       </dependency>
-      <dependency>
-         <!-- Spring Data Neo4J -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-neo4j</artifactId>
-      </dependency>
-      <dependency>
-         <!-- Spring Data Neo4J -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-commons</artifactId>
-      </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
       <!-- ============================================== -->
