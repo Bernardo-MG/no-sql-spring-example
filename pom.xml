@@ -20,7 +20,7 @@
 
    <groupId>com.bernardomg.example</groupId>
    <artifactId>no-sql-spring-example</artifactId>
-   <version>1.0.0</version>
+   <version>1.0.1</version>
    <packaging>war</packaging>
 
    <name>Spring MVC Project</name>
@@ -295,29 +295,27 @@
       <!-- ============================================== -->
       <aspectj.version>1.9.6</aspectj.version>
       <caffeine.version>2.6.2</caffeine.version>
-      <classgraph.version>4.8.90</classgraph.version>
+      <classgraph.version>4.8.104</classgraph.version>
       <glassfish.el.version>2.2</glassfish.el.version>
       <graphql.version>11.0.0</graphql.version>
-      <guava.version>29.0-jre</guava.version>
+      <guava.version>30.1.1-jre</guava.version>
       <hamcrest.version>2.2</hamcrest.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.version>5.4.21.Final</hibernate.version>
       <hikari.version>3.4.5</hikari.version>
-      <jackson.version>2.12.1</jackson.version>
+      <jackson.version>2.12.2</jackson.version>
       <javaee.api.version>2.2</javaee.api.version>
-      <jsonpath.version>2.4.0</jsonpath.version>
-      <junit.jupiter.version>5.7.0</junit.jupiter.version>
-      <log4j.version>2.13.3</log4j.version>
-      <mockito.version>3.7.0</mockito.version>
+      <jsonpath.version>2.5.0</jsonpath.version>
+      <junit.jupiter.version>5.7.1</junit.jupiter.version>
+      <log4j.version>2.14.1</log4j.version>
+      <mockito.version>3.9.0</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.30</slf4j.version>
       <spring.boot.graphql.version>11.0.0</spring.boot.graphql.version>
-      <spring.boot.neo4j.version>0.1.1</spring.boot.neo4j.version>
-      <spring.boot.version>2.4.0</spring.boot.version>
-      <spring.data.commons.version>2.4.2</spring.data.commons.version>
-      <spring.data.neo4j.version>6.0.2</spring.data.neo4j.version>
-      <spring.data.train.version>Neumann-SR6</spring.data.train.version>
-      <spring.version>5.3.2</spring.version>
+      <spring.boot.neo4j.version>0.1.3</spring.boot.neo4j.version>
+      <spring.boot.version>2.4.4</spring.boot.version>
+      <spring.data.train.version>2020.0.7</spring.data.train.version>
+      <spring.version>5.3.5</spring.version>
       <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
       <webappRunner.version>8.5.30.0</webappRunner.version>
       <!-- ============================================== -->
@@ -325,12 +323,12 @@
       <!-- ============================================== -->
       <plugin.frontend.node.version>v14.15.5</plugin.frontend.node.version>
       <plugin.frontend.npm.version>6.14.11</plugin.frontend.npm.version>
-      <plugin.frontend.version>1.10.0</plugin.frontend.version>
+      <plugin.frontend.version>1.11.2</plugin.frontend.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.0.11</site.skin.version>
+      <site.skin.version>2.1.0</site.skin.version>
    </properties>
 
    <!-- ********************************************** -->
@@ -348,9 +346,9 @@
             <scope>import</scope>
          </dependency>
          <dependency>
-            <!-- Spring Data Train BOM -->
+            <!-- Spring Data BOM -->
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-releasetrain</artifactId>
+            <artifactId>spring-data-bom</artifactId>
             <version>${spring.data.train.version}</version>
             <type>pom</type>
             <scope>import</scope>
@@ -613,18 +611,6 @@
          <groupId>io.github.classgraph</groupId>
          <artifactId>classgraph</artifactId>
          <version>${classgraph.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring Data Neo4J -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-neo4j</artifactId>
-         <version>${spring.data.neo4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring Data Neo4J -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-commons</artifactId>
-         <version>${spring.data.commons.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
