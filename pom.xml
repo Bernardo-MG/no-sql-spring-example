@@ -195,6 +195,35 @@
             </dependency>
          </dependencies>
       </profile>
+      <profile>
+         <!-- Production profile -->
+         <id>testing</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <!-- Frontend Plugin -->
+                  <groupId>com.github.eirslett</groupId>
+                  <artifactId>frontend-maven-plugin</artifactId>
+                  <configuration>
+                     <installDirectory>target</installDirectory>
+                  </configuration>
+                  <executions>
+                     <execution>
+                        <!-- Builds the frontend -->
+                        <id>frontend-build</id>
+                        <goals>
+                           <goal>npm</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                           <arguments>run build</arguments>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
       <!-- ============================================== -->
       <!-- ============ DEPLOYMENT PROFILES ============= -->
       <!-- ============================================== -->
