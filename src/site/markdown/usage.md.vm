@@ -34,5 +34,5 @@ The project requires a database and a server for being able to run the integrati
 Just like running the project, an embedded server with an in-memory database can be used:
 
 ```
-mvn verify -P development
+mvn verify
 ```
